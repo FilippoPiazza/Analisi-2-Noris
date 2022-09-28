@@ -1,0 +1,84 @@
+\documentclass{book}
+\usepackage{pgfplots}
+\usepackage{imakeidx}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{tikz}
+
+\newcommand{\SectionBreak}{%
+    %\vskip 0.5ex
+
+    \nointerlineskip
+    \moveright 0.125\textwidth \vbox{\hrule width0.75\textwidth}
+    \nointerlineskip
+    %\vskip 0.5ex
+    \makeatletter
+        %\@afterindenfalse%
+    \makeatother
+
+}
+
+\newtheorem{definition}{Definizione}
+
+\pgfplotsset{compat=1.18}
+
+\author{F. Piazza \and G. Michieletto}
+\title{%
+	Appunti di Analisi Matematica II \\
+	\large corso della prof.ssa B.Noris \\
+	Politecnico di Milano
+}
+
+
+\begin{document}
+
+
+\begin{titlepage}
+\maketitle
+
+% \titlegraphic[]{
+% \begin{tikzpicture}[remember picture]
+% \begin{axis}
+% \addplot3[surf, samples=50, opacity=0.5] {x^2+y^2};
+% \end{axis}
+%\end{tikzpicture}
+% }
+
+ 
+
+\end{titlepage}
+
+\begin{chapter}{Equazioni differenziali}
+\begin{section}{Equazioni differenziali del 1° ordine}
+\begin{definition}
+	Una equazione differenziale del 1° ordine è una relazione tra una funzione $y$ e la sua derivata $y'$ che può essere scritta come
+	\begin{equation}
+		y' = f(y)
+	\end{equation}
+	dove $f$ è una funzione continua su un intervallo $I$ di $\mathbb{R}$.
+\end{definition}
+
+Esempi:
+\begin{itemize}
+	\item $y' = t \sqrt{y_{(t^2)}+1}$ è in forma normale con $f(t,s) = t \sqrt{s^2+1}$. Il dominio di $f$ è $I = \mathbb{R} \times \mathbb{R}$.
+	\item $y'_{(t)} = \frac{1}{t}$ con $t>0$ diventa $f(t,s) = \frac{1}{t}$. \textbf{Oss:} $f$ non dipende esplicitamente da $s$. \\ Il dominio di $f$ è $\{(t,s) \in \mathbb{R}^2 : s\in\mathbb{R}, t\in\mathbb{R}^* \}$, dunque è diviso in due parti. Dovrò quindi risolvere la EDO nelle due regioni.
+\end{itemize}
+\SectionBreak
+\begin{definition}
+	Si chiama \emph{integrale generale} l'insieme delle soluzioni.
+\end{definition}
+\begin{definition}
+	Si chiama \emph{soluzione particolare} una specifica soluzione.
+\end{definition}
+\noindent{Una EDO del 1° ordine ha $\infty^1$, soluzioni, cioè avrà una costante arbitraria. In modo analogo, una EDO del 2° ordine avrà $\infty^2$ soluzioni, cioè avrà due costanti arbitrarie.}
+Esempi:
+\begin{itemize}
+	\item integrale generale $ce^t$ con $c$ costante arbitraria. Esempi di soluzioni particolari: $e^t$, $2e^t$, $-e^t$.
+	\item $z_{(t)} = -1 + arctan(t)$ con $t\in\mathbb{R}^*$. Esempio di soluzione: $z' = 0 + \frac{1}{1+t^2}$.
+\end{itemize}
+\textbf{Oss:} La EDO $y'_{(t)} = f(t,y_{(t)})$ è definita per $(t,y)\in dom(f)$
+\end{section}
+
+\end{chapter}
+
+\end{document}
