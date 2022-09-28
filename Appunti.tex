@@ -5,6 +5,7 @@
 \usepackage{amsthm}
 \usepackage{tikz}
 \usepackage{array}
+\usepackage{imakeidx}
 \newcommand{\SectionBreak}{%
     %\vskip 0.5ex
 
@@ -22,6 +23,7 @@
 
 \pgfplotsset{compat=1.18}
 
+
 \author{F. Piazza \and G. Michieletto}
 \title{%
 	Appunti di Analisi Matematica II \\
@@ -33,6 +35,7 @@
 	\begin{tikzpicture}
 	\begin{axis}[axis line style={draw=none}, colormap/bluered]
 	\pgfplotsset{ticks=none}
+	% \addplot [domain=0:1, samples=100, color=black, thick] {x};
 	\addplot3[surf, samples=50, opacity=0.5, shader=interp] {x^2-y^2};
 	\end{axis}
 	\end{tikzpicture}
@@ -41,10 +44,7 @@
 
 \begin{document}
 
-
-\begin{titlepage}
 \maketitle
-\end{titlepage}
 
 \chapter{Equazioni differenziali}
 \section{Equazioni differenziali del 1° ordine}
@@ -58,8 +58,10 @@
 
 Esempi:
 \begin{itemize}
-	\item $y' = t \sqrt{y_{(t^2)}+1}$ è in forma normale con $f(t,s) = t \sqrt{s^2+1}$. Il dominio di $f$ è $I = \mathbb{R} \times \mathbb{R}$.
-	\item $y'_{(t)} = \frac{1}{t}$ con $t>0$ diventa $f(t,s) = \frac{1}{t}$. \textbf{Oss:} $f$ non dipende esplicitamente da $s$. \\ Il dominio di $f$ è $\{(t,s) \in \mathbb{R}^2 : s\in\mathbb{R}, t\in\mathbb{R}^* \}$, dunque è diviso in due parti. Dovrò quindi risolvere la EDO nelle due regioni.
+	\item \emph{Tema d'esame gennaio 2021}\\$y' = t \sqrt{y_{(t^2)}+1}$ è in forma normale con $f(t,s) = t \sqrt{s^2+1}$. Il dominio di $f$ è $I = \mathbb{R} \times \mathbb{R} = \mathbb{R}^2$.
+	\item $y'_{(t)} = \frac{1}{t}$ con $t>0$ diventa $f(t,s) = \frac{1}{t}$. \textbf{Oss:} $f$ non dipende esplicitamente da $s$. \\ Il dominio di $f$ è $\{(t,s) \in \mathbb{R}^2 : s\in\mathbb{R}, t\in\mathbb{R}^* \}$, dunque è diviso in due parti.
+			Dovrò quindi risolvere la EDO separatamente nelle due regioni.
+			$$ \left\{\begin{array}{lr} y'(0)=\frac{1}{t},	t>0 \Rightarrow y(t) = ln(t)+c\\ y'(0)=\frac{1}{t},	t<0 \Rightarrow y(t) = ln(-t)+c \end{array}\right. $$
 \end{itemize}
 \SectionBreak
 \begin{definition}
@@ -76,6 +78,46 @@ Esempi:
 \end{itemize}
 \textbf{Oss:} La EDO $y'_{(t)} = f(t,y_{(t)})$ è definita per $(t,y)\in dom(f)$
 
+\subsection*{Soluzioni costanti di EDO del 1° ordine}
+\begin{definition}
+	Una soluzione costante di una EDO del 1° ordine è una funzione $y(t)$ che sia soluzione.
+\end{definition}
+Quando $y(t)=c$ è soluzione? Sostituisco $c$ a $y$:
+\begin{equation}
+	y'(t) = f(t,y(t)) \forall t
+\end{equation}
+
+Quindi \underline{le soluzioni costanti sono} $y(t) = c$ \underline{con $c$ tale che} $f(t,c) = 0 \forall t$.\\
+
+Esempi:
+\begin{itemize}
+	\item Eq. Logistica: $y'(t) = ky(t)-hy^2(t)$\\
+			$f(t,y)=ky-hy^2$\\
+			$f(t,c)= 0 \forall t$ \quad $ky-hy^2=0=y(k-hy)$\\
+			Soluzioni costanti: $y=0$ o $y=\frac{k}{h}$
+	\item $y'(t)=te^{y(t)}$ \quad $te^{y(t)}=0$ non ha soluzione.
+\end{itemize}
+
+\SectionBreak
+
+\subsection*{EDO a variabili separabili}
+\begin{definition}
+	Una EDO del 1° ordine è detta \emph{a variabili separabili} se è del tipo
+	\begin{equation}
+		y' = f(t)\cdot g(y(t))
+	\end{equation}
+	dove $f$ e $g$ sono funzioni continue su intervalli $J_1,J_2\subseteq\mathbb{R}$.
+\end{definition}
+
+\begin{center}
+	
+\textbf{Da integrare con gli appunti della professoressa.\\Lezione del 14/09/2022}
+
+\end{center}
+
+
+
+\SectionBreak
 \subsection*{Problema di Cauchy}
 \begin{definition}
 	Data una EDO del 1° ordine $y'_{(t)} = f(t,y_{(t)})$ sia $(t_{0}, y_{0})$ dove la EDO è definita.
@@ -114,21 +156,143 @@ Aggiungi Esempi\\
 	\end{equation}
 \end{definition}
 Esempio:\\
-esempio
+Aggiungi esempi
 \\
 \SectionBreak
 \subsection*{Principio di sovrapposizione}
-prova
+Sia $a: J\subseteq\mathbb{R} \to \mathbb{R}$ una funzione continua su $J$.\\L'applicazione $\mathcal{L}(y)=y'-a(t)\cdot y$ è lineare.\medskip\\
+Più esplicitamente, dati $c_1,c_2 \in \mathbb{R}$:\\
+$\mathcal{L}(c_1y_1+c_2y_2)=c_1\mathcal{L}(y_1)+c_2\mathcal{L}(y_2) \forall y_1,y_2$ funzioni derivabili.\medskip\\
+Ancora più esplicitamente:
+se $\mathcal{L}(y_1)=b_1$ cioè $y'_1=a(t)y_1+b_1$\\
+se $\mathcal{L}(y_2)=b_2$ cioè $y'_2=a(t)y_2+b_2$\\
+allora $\mathcal{L}(c_1y_1+c_2y_2)=c_1b_1+c_2b_2$ cioè $y'_{(t)}=a(t)(c_1y_1+c_2y_2)+c_1b_1+c_2b_2$\\
+cioè $(c_1y_1+c_2y_2)'=a(t)(c_1y_1+c_2y_2)+c_1b_1+c_2b_2$\\
+\textbf{Oss:} \begin{itemize}
+	\item Prendo due soluzioni distinde della EDO \textbf{Recupera le osservazioni}
+\end{itemize}
+\SectionBreak
+\subsection*{Esistenza e unicità globale di Cauchy}
+Siano $J\subseteq\mathbb{R}$ intervallo e $a,b: J\to \mathbb{R}$ continue.\\
+Per ogni $t_0\in J, y_0 \in \mathbb{R}$ il problema di Cauchy:
+\begin{equation}
+	\left\{\begin{array}{lr}y'(t)=a(t)y(t)+b(t) \\ y(t_0)=y_0\end{array}\right.
+\end{equation}
+ha una soluzione unica $y: J\to \mathbb{R}$ definita su $J$.\\
+\textbf{Aggiungi parte in blu lezione 16/09/2022}\\
+
+\SectionBreak
+
+\subsection*{Teorema Formula risolutiva per EDO lineari 1° ordine}
+$a,b: J\subseteq\mathbb{R}\to\mathbb{R}$ \quad $y'(t) = a(t)y(t)+b(t)$\\
+L'integrale generale è dato dalla formula:
+\begin{equation}
+	y(t)=e^{A(t)}+\left( \int e^{-A(x)}b(x)dx + c \right) \quad \forall c\in \mathbb{R}
+\end{equation}
+dove $A(t)$ è una primitiva di $a$.\\
+
+\emph{\textbf{Dim. 1 - da sapere all'esame}}\\
+\begin{itemize}
+	\item Porto $ay$ sulla sinistra\\
+			$y'-ay=b$
+	\item Moltiplico l'equazione per $e^{-A}$\\
+			$e^{-A}y'-e^{-A}ay=e^{-A}b$
+	\item Riconosco\\
+			$y'(t)e^{-A(t)}-a(t)y(t)e^{-A(t)}=\left(y(t)e^{-A(t)}\right)$\\
+			Quindi la EDO iniziale si riscrive equivalentemente:\\
+			$(ye^{-A})'=be^{-A}$
+	\item Integro\\
+			$y(t)e^{-A(t)}=\int be^{-A(t)}dt+c$
+	\item Moltiplico tutto per $e^{A(t)}$\\
+			$y(t)=e^{A(t)}\left(\int be^{-A(t)}dt+c\right)$
+\end{itemize}
+
+\SectionBreak
+
+\subsection*{Equazione di Bernoulli}
+\begin{definition}
+	Si chiamano \emph{equazione di Bernoulli} le EDO del 1° ordine lineari di forma:\\
+	\begin{equation}
+		y'_{(t)} = k(t)y_{(t)} + h(t)y_{(t)}^\alpha \quad \forall \alpha \in \mathbb{R}\setminus \{0,1\}
+	\end{equation}
+	con $k,y: J\subseteq\mathbb{R}\to\mathbb{R}$ continue.
+\end{definition}
+
+\textbf{Premesse:}\\
+\begin{enumerate}
+	\item Per semplificare ci occupiamo solo di soluzioni $y \geq 0$
+	\item nel caso $\alpha<1$ accadono fenomeni strani, però la tecnica risolutiva è comunque valida
+\end{enumerate}
+
+\noindent{Procedimento di risoluzione:}\\
+\begin{enumerate}
+	\item Cerchiamo le soluzioni costanti (c'è sempre almeno quella nulla)
+	\item divido per $y^\alpha$\\
+			$y'(t) = k(t)y(t) + h(t)$\\
+			$y'(t) = k(t)y(t)^{1-\alpha} + h(t)$
+	\item Pongo $z(t)=y(t)^{1-\alpha}$\\
+			Quale è l'equazione soddisfatta da $z$?\\
+			$z'(t)= \left(1-\alpha\right)\left[k(t)y(t)^{1-\alpha}+h(t)\right] $\\
+			$z'(t)=\left(1-\alpha\right)k(t)z(t)+\left(1-\alpha\right)h(t)$\\
+	\item Risolvo l'equazione lineare in $z$
+	\item Torno alla variabile $y = z(t)^{\frac{1}{1-\alpha}}$
+\end{enumerate}
+
+\SectionBreak
+
+\subsection*{Equazione Logistica}
+$y(t) = $ numero di individui infetti al tempo $t$\\
+$y: J\subseteq\mathbb{R}^+\to\mathbb{R}^+$
+\bigskip\\
+\textbf{1° Modello: Malthus (inizio '800)}\\
+Il tasso di crescita della popolazione è proporzionale alla popolazione stessa.\\
+\begin{equation}
+	y'(t) = ky(t)
+\end{equation}
+dove $k\in\mathbb{R}^+$ è la \emph{tasso di crescita} e $k$ è il coefficiente di proporzionalità, dato dalla differenza tra tasso di natalità e tasso di mortalità.\\
+integrale generale:
+	$y(t) = y(0)e^{kt} $con$ c>0$\\
 
 
+\textbf{2° Modello: Verhulst (metà '800)}\\
+\begin{equation}
+	y'(t)=ky(t)-hy(t)^2 \quad  \textnormal{con } k,h > 0
+\end{equation}
 
+Il modello prende anche in considerazione la competizione per le risorse al crescere della popolazione.\\
+\bigskip
+\emph{Simulazione numerica per $k=h=1$}
 
+\begin{tikzpicture}
+	\begin{axis}[ymin = 0, ymax = 1.5, axis lines = left, height = 4.5cm, width = 8cm, legend pos = south east]
 
+\addplot [
+    domain=0:6, 
+    samples=100, 
+    color=red,
+]
+{1/(1-(1/3)*e^(-x))};
+\addlegendentry{$y(0)=1.5$}
+\addplot [
+    domain=0:6, 
+    samples=100, 
+    color=blue,
+    ]
+    {1/(1+e^(-x))};
+\addlegendentry{$y(0)=0.5$}
+\addplot [
+	domain=0:6, 
+	samples=100, 
+	color=green,
+	]
+	{1};
 
-
-
-
+	\end{axis}
+\end{tikzpicture}
+\bigskip
+\SectionBreak
 
 
 
 \end{document}
+
