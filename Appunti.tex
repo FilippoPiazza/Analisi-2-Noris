@@ -293,8 +293,21 @@ Il modello prende anche in considerazione la competizione per le risorse al cres
 \end{tikzpicture}
 \bigskip
 \SectionBreak
+\clearpage
+
+\textbf{3° Integrale generale dell'Equazione Logistica}\\
+Trovo l'integrale generale risolvendo come Bernoulli
+\begin{enumerate}
+
+    \item Soluzioni costanti\hspace{1cm}  $y(t)=0,\hspace{0.5cm}   y(t)=\frac{k}{h}$
+    \item Divido per $y^2: \hspace{0.5cm}   \frac{y'(t)}{y^2(t)} = \frac{k}{y(t)}-h$ 
+    \item Pongo $z'(t)=\frac{1}{y(t)}=-\frac{k}{y(t)}+h=-kz(t)+h$ ricavo che $z'(t) + kz(t)=h$
+    \item $z(t)= e^{-\int k}[\int e^{\int k}h dx+c]$\\\\$=e^{-kt}[h\int e^{kx} dx+c]$\\\\$=e^{-kt}[\frac{h}{k}e^{kt}+c]$\\\\$=\frac{\frac{h}{k}e^{kt}+c}{e^{kt}}$
+    \item $y(t)=\frac{1}{z(t)}=\frac{e^{kt}}{\frac{h}{k}e^{kt}+c}=\frac{ke^{kt}}{he^{kt}+kc}$ \\possiamo scrivere $kc=c'$ in quanto costante arbitraria
+    
+\end{enumerate}
+
 
 
 
 \end{document}
-
