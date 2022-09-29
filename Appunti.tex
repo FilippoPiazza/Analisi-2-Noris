@@ -1,4 +1,5 @@
 \documentclass{book}
+\usepackage[x11names]{xcolor}
 \usepackage{pgfplots}
 \usepackage{imakeidx}
 \usepackage{amsfonts}
@@ -6,6 +7,8 @@
 \usepackage{tikz}
 \usepackage{array}
 \usepackage{imakeidx}
+\usepackage{mdframed}
+
 \newcommand{\SectionBreak}{%
     %\vskip 0.5ex
 
@@ -19,7 +22,12 @@
 
 }
 
-\newtheorem{definition}{Definizione}
+\newtheorem{defn}{Definizione}
+\newenvironment{definition}{\begin{mdframed}[backgroundcolor=Ivory2]\begin{defn}}{\end{defn}\end{mdframed}}
+
+\newtheorem{demnstrn}{Dimostrazione}
+\newenvironment{dimostrazione}{\begin{mdframed}[backgroundcolor=LightCyan1]\begin{demnstrn}}{\end{demnstrn}\end{mdframed}}
+
 
 \pgfplotsset{compat=1.18}
 
@@ -119,6 +127,7 @@ Esempi:
 
 
 \SectionBreak
+\newpage
 \subsection*{Problema di Cauchy}
 \begin{definition}
 	Data una EDO del 1° ordine $y'_{(t)} = f(t,y_{(t)})$ sia $(t_{0}, y_{0})$ dove la EDO è definita.
@@ -193,7 +202,8 @@ L'integrale generale è dato dalla formula:
 \end{equation}
 dove $A(t)$ è una primitiva di $a$.\\
 
-\emph{\textbf{Dim. 1 - da sapere all'esame}}\\
+\begin{dimostrazione}
+\emph{\textbf{da sapere all'esame}}\\
 \begin{itemize}
 	\item Porto $ay$ sulla sinistra\\
 			$y'-ay=b$
@@ -208,6 +218,7 @@ dove $A(t)$ è una primitiva di $a$.\\
 	\item Moltiplico tutto per $e^{A(t)}$\\
 			$y(t)=e^{A(t)}\left(\int be^{-A(t)}dt+c\right)$
 \end{itemize}
+\end{dimostrazione}
 
 \SectionBreak
 
@@ -256,7 +267,7 @@ integrale generale:
 	$y(t) = y(0)e^{kt} $con$ c>0$\\
 
 
-\textbf{2° Modello: Verhulst (metà '800)}\\
+\noindent{\textbf{2° Modello: Verhulst (metà '800)}}\\
 \begin{equation}
 	y'(t)=ky(t)-hy(t)^2 \quad  \textnormal{con } k,h > 0
 \end{equation}
@@ -292,7 +303,8 @@ Il modello prende anche in considerazione la competizione per le risorse al cres
 	\end{axis}
 \end{tikzpicture}
 
-\textbf{3° Integrale generale dell'Equazione Logistica}\\
+\newpage % verifica
+\textbf{Integrale generale dell'Equazione Logistica}\\
 Trovo l'integrale generale risolvendo come Bernoulli
 \begin{enumerate}
 
@@ -300,10 +312,11 @@ Trovo l'integrale generale risolvendo come Bernoulli
     \item Divido per $y^2: \hspace{0.5cm}   \frac{y'(t)}{y^2(t)} = \frac{k}{y(t)}-h$ 
     \item Pongo $z'(t)=\frac{1}{y(t)}=-\frac{k}{y(t)}+h=-kz(t)+h$ ricavo che $z'(t) + kz(t)=h$
     \item $z(t)= e^{-\int k}[\int e^{\int k}h dx+c]$\\\\$=e^{-kt}[h\int e^{kx} dx+c]$\\\\$=e^{-kt}[\frac{h}{k}e^{kt}+c]$\\\\$=\frac{\frac{h}{k}e^{kt}+c}{e^{kt}}$
-    \item $y(t)=\frac{1}{z(t)}=\frac{e^{kt}}{\frac{h}{k}e^{kt}+c}=\frac{ke^{kt}}{he^{kt}+kc}$ \\possiamo scrivere $kc=c'$ in quanto costante arbitraria
+    \item $y(t)=\frac{1}{z(t)}=\frac{e^{kt}}{\frac{h}{k}e^{kt}+c}=\frac{ke^{kt}}{he^{kt}+kc}$\\ possiamo scrivere $kc=c'$ in quanto costante arbitraria
     
 \end{enumerate}
 
+\newpage
 \section{Equazioni differenziali ordinarie del 2° ordine lineari}
 \subsection*{Teorema di struttura dell'integrale generale di EDO del 2° ordine lineari omogenee}
 Siano $a,b,c : I \subseteq \mathbb{R} \to \mathbb{R}$ funzioni continue e $a \neq 0$ in $I$.\\
@@ -327,7 +340,11 @@ dove $y_{0_1},y_{0_2}$ sono due soluzioni linearmente indipendenti.\\
 \item $C^2(I) = \{y \in C^1(I)$, derivabili due volte in $I$ con $y''$ continua in $I\}$
 \item $C^2(I)$ è uno spazio vettoriale con le operazioni usuali di somma di funzioni e prodotto di funzione per uno scalare.
 \end{enumerate}
-\emph{\textbf{Dim. 2 - da sapere all'esame}}
+
+\begin{dimostrazione}
+	
+
+\emph{\textbf{da sapere all'esame}}
 \begin{itemize}
 \item L'integrale generale dell'omogenea è:\\
 		$W = \{y \in V : ay''(t) + by'(t) + cy(t) = 0\}$
@@ -359,6 +376,7 @@ dove $y_{0_1},y_{0_2}$ sono due soluzioni linearmente indipendenti.\\
 					cioè $y_0(t)$ si scrive come combinazione lineare di $y_{0_1}, y_{0_2}$ con coefficienti $c_1=y_0(0)$ e $c_2=y_0'(0)$.\\
 \end{enumerate}
 \end{itemize}
+\end{dimostrazione}
 \SectionBreak
 
 \subsection*{Struttura dell'integrale generale di EDO del 2° ordine lineari non omogenee}
@@ -380,6 +398,9 @@ dove la $y_0(t)$ è l'integrale dell'eq. omogenea, come nel teorema precedente, 
 	\textbf{Fine lezione 21/09 c'è una scritta in fondo in rosso che non so cosa sia.}
 \end{center}
 
+
+
+\newpage
 \section{Sistemi differenziali lineari}
 
 
