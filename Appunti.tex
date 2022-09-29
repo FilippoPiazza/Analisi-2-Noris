@@ -1,13 +1,14 @@
 \documentclass{book}
-\usepackage[x11names]{xcolor}
-\usepackage{pgfplots}
-\usepackage{imakeidx}
-\usepackage{amsfonts}
-\usepackage{amsthm}
-\usepackage{tikz}
-\usepackage{array}
-\usepackage{imakeidx}
-\usepackage{mdframed}
+\usepackage[x11names]{xcolor}	% colori
+\usepackage{pgfplots}			% grafici
+\usepackage{imakeidx}			% indice
+\usepackage{amsfonts}			% font matematici	
+\usepackage{amsthm}				% teoremi				
+\usepackage{array}				% matrici
+\usepackage{mdframed}			% cornici al testo
+\usepackage{mathtools}			% matematica
+\usepackage{hyperref}			% collegamenti ipertestuali per l'indice
+\usepackage[italian]{babel}
 
 \newcommand{\SectionBreak}{%
     %\vskip 0.5ex
@@ -22,14 +23,20 @@
 
 }
 
+% Impostazioni grafici pgfplots, altrimenti si lamenta
+\pgfplotsset{compat=1.18}
+
+% Definizione dell'ambiente "Definizione"
 \newtheorem{defn}{Definizione}
 \newenvironment{definition}{\begin{mdframed}[backgroundcolor=Ivory2]\begin{defn}}{\end{defn}\end{mdframed}}
 
+% Definizione dell'ambiente "Dimostrazione"
 \newtheorem{demnstrn}{Dimostrazione}
 \newenvironment{dimostrazione}{\begin{mdframed}[backgroundcolor=LightCyan1]\begin{demnstrn}}{\end{demnstrn}\end{mdframed}}
 
-
-\pgfplotsset{compat=1.18}
+% Solo le equazioni referenziate vengono numerate
+% vedi https://tex.stackexchange.com/a/2602
+\mathtoolsset{showonlyrefs}  
 
 
 \author{F. Piazza \and G. Michieletto}
@@ -40,20 +47,45 @@
 	\bigskip
 	\bigskip
 
+
 	\begin{tikzpicture}
 	\begin{axis}[axis line style={draw=none}, colormap/bluered]
 	\pgfplotsset{ticks=none}
 	% \addplot [domain=0:1, samples=100, color=black, thick] {x};
-	\addplot3[surf, samples=50, opacity=0.5, shader=interp] {x^2-y^2};
+	 \addplot3[surf, samples=50, opacity=0.5, shader=interp] {x^2-y^2};
 	\end{axis}
 	\end{tikzpicture}
 }
 
 
 \begin{document}
-
-
 \maketitle
+
+\section*{}
+
+Gli esami non finiscono mai, amico mio! Così è la vita. \medskip \\
+\null\hfill- \textit{Denis Ivanovič Fonvizin}
+	
+
+
+\tableofcontents
+
+\setcounter{chapter}{-1} % per evitare che il capitolo 1 venga numerato come 2
+\chapter{Cenni di Analisi I e Algebra Lineare}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 \chapter{Equazioni differenziali}
 \section{Equazioni differenziali del 1° ordine}
@@ -87,7 +119,7 @@ Esempi:
 \end{itemize}
 \textbf{Oss:} La EDO $y'_{(t)} = f(t,y_{(t)})$ è definita per $(t,y)\in dom(f)$
 
-\subsection*{Soluzioni costanti di EDO del 1° ordine}
+\subsection{Soluzioni costanti di EDO del 1° ordine}
 \begin{definition}
 	Una soluzione costante di una EDO del 1° ordine è una funzione $y(t)$ che sia soluzione.
 \end{definition}
@@ -109,7 +141,7 @@ Esempi:
 
 \SectionBreak
 
-\subsection*{EDO a variabili separabili}
+\subsection{EDO a variabili separabili}
 \begin{definition}
 	Una EDO del 1° ordine è detta \emph{a variabili separabili} se è del tipo
 	\begin{equation}
@@ -128,7 +160,7 @@ Esempi:
 
 \SectionBreak
 \newpage
-\subsection*{Problema di Cauchy}
+\subsection{Problema di Cauchy}
 \begin{definition}
 	Data una EDO del 1° ordine $y'_{(t)} = f(t,y_{(t)})$ sia $(t_{0}, y_{0})$ dove la EDO è definita.
 	Cioè $(t_{0},y_{0})\in dom(f)$ \\
@@ -137,7 +169,7 @@ Esempi:
 \end{definition}
 Nota: il sistema ha una condizione perché è del 1° ordine. La condizione trova la soluzione particolare che passa per $(t_{0},y_{0})$.\\
 \SectionBreak
-\subsection*{Come si risolve?}
+\subsection{Come si risolve?}
 Step:
 \begin{enumerate}
 	\item Trova l'integrale generale. ($\infty^1$ soluzioni dipendenti da 1 parametro)
@@ -145,11 +177,11 @@ Step:
 	\item Sostituisco $c$ in 1.
 \end{enumerate}
 
-\subsubsection*{Esempi}
+\subsubsection{Esempi}
 Aggiungi Esempi\\
 \SectionBreak
 
-\subsection*{EDO 1° ordine lineari}
+\subsection{EDO 1° ordine lineari}
 \begin{definition}
 	Una EDO del 1° ordine lineare in forma normale è:\\
 	\begin{equation}
@@ -169,7 +201,7 @@ Esempio:\\
 Aggiungi esempi
 \\
 \SectionBreak
-\subsection*{Principio di sovrapposizione}
+\subsection{Principio di sovrapposizione}
 Sia $a: J\subseteq\mathbb{R} \to \mathbb{R}$ una funzione continua su $J$.\\L'applicazione $\mathcal{L}(y)=y'-a(t)\cdot y$ è lineare.\medskip\\
 Più esplicitamente, dati $c_1,c_2 \in \mathbb{R}$:\\
 $\mathcal{L}(c_1y_1+c_2y_2)=c_1\mathcal{L}(y_1)+c_2\mathcal{L}(y_2) \forall y_1,y_2$ funzioni derivabili.\medskip\\
@@ -183,7 +215,7 @@ cioè $(c_1y_1+c_2y_2)'=a(t)(c_1y_1+c_2y_2)+c_1b_1+c_2b_2$\\
     \item  $y'=a(t)y + b(t)$\\
 \end{itemize}
 \SectionBreak
-\subsection*{Esistenza e unicità globale di Cauchy}
+\subsection{Esistenza e unicità globale di Cauchy}
 Siano $J\subseteq\mathbb{R}$ intervallo e $a,b: J\to \mathbb{R}$ continue.\\
 Per ogni $t_0\in J, y_0 \in \mathbb{R}$ il problema di Cauchy:
 \begin{equation}
@@ -194,7 +226,7 @@ ha una soluzione unica $y: J\to \mathbb{R}$ definita su $J$.\\
 
 \SectionBreak
 
-\subsection*{Teorema Formula risolutiva per EDO lineari 1° ordine}
+\subsection{Teorema Formula risolutiva per EDO lineari 1° ordine}
 $a,b: J\subseteq\mathbb{R}\to\mathbb{R}$ \quad $y'(t) = a(t)y(t)+b(t)$\\
 L'integrale generale è dato dalla formula:
 \begin{equation}
@@ -222,7 +254,7 @@ dove $A(t)$ è una primitiva di $a$.\\
 
 \SectionBreak
 
-\subsection*{Equazione di Bernoulli}
+\subsection{Equazione di Bernoulli}
 \begin{definition}
 	Si chiamano \emph{equazione di Bernoulli} le EDO del 1° ordine lineari di forma:\\
 	\begin{equation}
@@ -253,7 +285,7 @@ dove $A(t)$ è una primitiva di $a$.\\
 
 \SectionBreak
 
-\subsection*{Equazione Logistica}
+\subsection{Equazione Logistica}
 $y(t) = $ numero di individui infetti al tempo $t$\\
 $y: J\subseteq\mathbb{R}^+\to\mathbb{R}^+$
 \bigskip\\
@@ -318,7 +350,7 @@ Trovo l'integrale generale risolvendo come Bernoulli
 
 \newpage
 \section{Equazioni differenziali ordinarie del 2° ordine lineari}
-\subsection*{Teorema di struttura dell'integrale generale di EDO del 2° ordine lineari omogenee}
+\subsection{Teorema di struttura dell'integrale generale di EDO del 2° ordine lineari omogenee}
 Siano $a,b,c : I \subseteq \mathbb{R} \to \mathbb{R}$ funzioni continue e $a \neq 0$ in $I$.\\
 L'integrale generale dell'eq. omogenea
 \begin{equation}
@@ -379,7 +411,7 @@ dove $y_{0_1},y_{0_2}$ sono due soluzioni linearmente indipendenti.\\
 \end{dimostrazione}
 \SectionBreak
 
-\subsection*{Struttura dell'integrale generale di EDO del 2° ordine lineari non omogenee}
+\subsection{Struttura dell'integrale generale di EDO del 2° ordine lineari non omogenee}
 Siano $a,b,c:\mathbb{R} \to \mathbb{R}$ con $a\neq 0$ in $I$\\
 L'integrale generale dell'eq. completa
 \begin{equation}
@@ -402,11 +434,69 @@ dove la $y_0(t)$ è l'integrale dell'eq. omogenea, come nel teorema precedente, 
 
 \newpage
 \section{Sistemi differenziali lineari}
+Esempio introduttivo $F=ma$
+\begin{equation}
+	y''(t) = \frac{F}{m}
+\end{equation}
+Trasformo in un sistema di due equazioni differenziali di primo ordine:\\
+$ y_1(t) = y(t)$: posizione e $y_2(t) = y'(t) = y'_1(t)$: velocità.\\
+$$ \left\{\begin{array}{lr} y'_1(t)=y_2(t) \quad \quad \textnormal{la velocità è la derivata della posizione}\\ y'_2(t)=\frac{F}{m} \quad \quad \textnormal{l'accelerazione è la derivata della velocità}\end{array}\right. $$
+In forma matriciale:
+\begin{center}
+	\textbf{\emph{E mo come la disegno?\\...}}
+	
+\end{center}
+In forma compatta:
+$\underline{y'}(t) = A\underline{y}(t)+\underline{b}(t)$\\
+\begin{equation}
+	\underline{y'}(t) = \begin{pmatrix} y_1(t) \\ y_2(t) \end{pmatrix} \quad A = \begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix} \quad \underline{b} =\begin{pmatrix} 0 \\ \frac{F}{m} \end{pmatrix}
+\end{equation}
 
+\SectionBreak
+Esercizi:
 
+\begin{center}
+	\emph{\textbf{Esercizi qua}}
+\end{center}
 
+\SectionBreak
+\begin{definition}
+	\emph{Sistema differenziale lineare} è un sistema di equazioni differenziali di primo ordine con coefficienti costanti, cioè:
+	\begin{equation}
+		\underline{y'}(t) = A\underline{y}(t)+\underline{b}(t)
+	\end{equation}
+	dove $A$ è una matrice quadrata di ordine $n$ e $\underline{b}$ è un vettore di dimensione $n$.
+\end{definition}
+% ripasso gal
+\SectionBreak
 
+\subsection{Risultati teorici}
+Come si scrive un problema di Cauchy per un sistema?\\
+\emph{Esempio:} $y''(t)-2y'(t)=t$ con $y(0)=y_0$ e $y'(0)=v_0$\\
+Trasformo la EDO in sistema
+\begin{equation}
+	\left\{
+	\begin{array}{ll}
+		y'_1(t) = y_2(t)\\
+		y'_2(t) = 2y_2(t)+t
+	\end{array}
+	\right.
+\end{equation}
+Un problema di Cauchy è $$ \begin{array}{ll} y_1(t_0) = y_0 \\ y_2(t_0)=v_0  \end{array} \quad \quad \underline{y}(t_0) = \begin{pmatrix} y_0 \\ v_0 \end{pmatrix}$$\\
 
+\begin{definition}
+	Dato $\underline{y}'(t)=A\underline{y}(t)+\underline{b}(t)$ con $A$ matrice quadrata di ordine $n$ e $\underline{b}$ vettore di dimensione $n$\\
+	chiamiamo problema di Cauchy: $$ \left\{ \begin{array}{ll} \underline{y}'(t) = A \cdot y(t) + \underline{b}(t) \\ \underline{y}(t_0) = \underline{y}_0  \end{array} \right.$$
+\end{definition}
 
+\begin{center}
+	\emph{\textbf{Esempi}}
+\end{center}
+
+\SectionBreak
+
+\begin{center}
+	\emph{\textbf{C'è una pagina che non so se è spiegazione o esercizi, ci sono parti scritte in LaTeX e altra a mano.\\ Prosegue poi con i sistemi omogenei.}}
+\end{center}
 
 \end{document}
