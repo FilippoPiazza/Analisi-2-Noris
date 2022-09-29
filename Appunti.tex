@@ -290,8 +290,91 @@ Il modello prende anche in considerazione la competizione per le risorse al cres
 
 	\end{axis}
 \end{tikzpicture}
-\bigskip
+
+\section{Equazioni differenziali ordinarie del 2° ordine lineari}
+\subsection*{Teorema di struttura dell'integrale generale di EDO del 2° ordine lineari omogenee}
+Siano $a,b,c : I \subseteq \mathbb{R} \to \mathbb{R}$ funzioni continue e $a \neq 0$ in $I$.\\
+L'integrale generale dell'eq. omogenea
+\begin{equation}
+	a(t)y''(t) + b(t)y'(t) + c(t)y(t) = 0
+\end{equation}
+è uno spazio vettoriale di dimensione 2, cioè le soluzioni sono tutte e sole della forma:
+\begin{equation}
+	y_0(t) = c_1y_{0_1}+c_2y_{0_2} \quad \textnormal{con } c_1,c_2 \in \mathbb{R}^n
+\end{equation}
+dove $y_{0_1},y_{0_2}$ sono due soluzioni linearmente indipendenti.\\
+
+
+\emph{Oss:} Dire che due soluzioni sono linearmente indipendenti significa che non esiste un coefficiente $c$ tale che $c\cdot y_1 = y_2$, ovvero che non sono una multipla dell'altra.\\
+\emph{Premesse:}
+\begin{enumerate}
+\item Spazio vettoriale $V=C^2(I)$
+\item $I\subseteq\mathbb{R}$ funzione di 1 variabile $y(t)$
+\item $C^2(I) = \{y:I \to \mathbb{R}$, derivabili in $I$ e $y'$ continua in $I\}$
+\item $C^2(I) = \{y \in C^1(I)$, derivabili due volte in $I$ con $y''$ continua in $I\}$
+\item $C^2(I)$ è uno spazio vettoriale con le operazioni usuali di somma di funzioni e prodotto di funzione per uno scalare.
+\end{enumerate}
+\emph{\textbf{Dim. 2 - da sapere all'esame}}
+\begin{itemize}
+\item L'integrale generale dell'omogenea è:\\
+		$W = \{y \in V : ay''(t) + by'(t) + cy(t) = 0\}$
+\item W è un sottospazio vettoriale di V $\Leftrightarrow$ è chiuso rispetto alla somma e rispetto al prodotto per uno scalare. Questo è vero grazie al principio di sovrapposizione (caso particolare dell'omogenea).
+\item Devo dimostrare che W ha dimensione 2.
+\begin{enumerate}
+	\item[$i ) $] Determinare 2 soluzioni lineari indipendenti dell'equazione $y_{0_1}, y_{0_2}$
+	\item[$ii )$] Dimostrare che ogni soluzione $y$ della EDO si scrive come combinazione lineare di $y_{0_1}, y_{0_2}$
+	\item [$i )$] Scelgo $y_{0_1}$ soluzione del problema di Cauchy.\\
+				$$
+				\left\{
+				\begin{array}{ll}
+					ay''_{0_1}(t) + by'_{0_1}(t) + cy_{0_1}(t) = 0\\
+					y_{0_1}(0) = 1\\
+					y'_{0_1}(0) = 0
+				\end{array} \right.
+				$$
+				Verifico che $y_{0_1}, y_{0_2}$ sono soluzioni lineari indipendenti. Se per assurdo fossero una multiplo dell'altra\\
+				$ y_{0_1}(t) = \lambda y_{0_2}(t) \quad \forall t$\\
+				In particolare, per $t=0$ avrei $y_{0_1}(0) = \lambda y_{0_2}(0)$ avrei trovato $1=\lambda\cdot 0$ assurdo.
+	\item [$ii )$] Sia $y_0(t)$ soluzione dell'EDO, cerco $c_1,c_2\in \mathbb{R}$ tali che $y_0(t) = c_1y_{0_1}(t) + c_2y_{0_2}(t)$\\
+					$ y_0(t) = c_1y_{0_1}(t) + c_2y_{0_2}(t) = c_1$\\
+					\medskip
+					$ y_0'(t) = c_1y_{0_1}'(t) + c_2y_{0_2}'(t) = c_2$\\
+					In conclusione la funzione:\\
+					$z(t) = y_0(0)\cdot y_{0_1}(t) + y_0'(0)\cdot y_{0_2}(t)$\\
+					risolve lo stesso problema di Cauchy di $y_0(t)$ e quindi, grazie al teorema di esistenza e unicità di Cauchy, coincidono:\\
+					$y_0(t) = z(t) \quad \forall t$,\\
+					cioè $y_0(t)$ si scrive come combinazione lineare di $y_{0_1}, y_{0_2}$ con coefficienti $c_1=y_0(0)$ e $c_2=y_0'(0)$.\\
+\end{enumerate}
+\end{itemize}
 \SectionBreak
+\subsection*{Struttura dell'integrale generale di EDO del 2° ordine lineari non omogenee}
+Siano $a,b,c:\mathbb{R} \to \mathbb{R}$ con $a\neq 0$ in $I$\\
+L'integrale generale dell'eq. completa
+\begin{equation}
+	ay''(t) + by'(t) + cy(t) = f(t)
+\end{equation}
+è:
+\begin{equation}
+	y(t) = y_0(t) + y_p(t)
+\end{equation}
+dove la $y_0(t)$ è l'integrale dell'eq. omogenea, come nel teorema precedente, e la $y_p(t)$ è una soluzione particolare dell'eq. compleata.\\
+
+\emph{Oss:} L'integrale generale di una EDO del secondo ordine lineare non omogenea è quindi uno spazio affine (cioè il translato di uno spazio vettoriale) di dimensione 2.\\
+% ripasso gal
+
+\begin{center}
+	\textbf{Fine lezione 21/09 c'è una scritta in fondo in rosso che non so cosa sia.}
+\end{center}
+
+\section{Sistemi differenziali lineari}
+
+
+
+
+
+
+
+
 
 
 
