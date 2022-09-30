@@ -74,6 +74,10 @@ Gli esami non finiscono mai, amico mio! Così è la vita. \medskip \\
 \chapter{Cenni di Analisi I e Algebra Lineare}
 \section{Regole di integrazione e derivazione}
 
+\section{Serie numeriche}
+
+\section{Determinante di una matrice}
+
 
 
 
@@ -497,17 +501,103 @@ Un problema di Cauchy è $$ \begin{array}{ll} y_1(t_0) = y_0 \\ y_2(t_0)=v_0  \e
 \SectionBreak
 
 \begin{center}
-	\emph{\textbf{C'è una pagina che non so se è spiegazione o esercizi, ci sono parti scritte in LaTeX e altra a mano.\\ Prosegue poi con i sistemi omogenei.}}
+	\emph{\textbf{C'è una pagina che non so se è spiegazione o esercizi, ci sono parti scritte in LaTeX e altre a mano.\\ * \\ * \\Prosegue poi con i sistemi omogenei.}}
 \end{center}
 
+\SectionBreak
+
+\section{Sistemi non omogenei}
+\subsection{Struttura dell'int. gen. dei sistemi non omogenei}
+\begin{center}
+	\emph{\textbf{Manca la definizione.}}
+\end{center}
+
+Praticamente, per risolvere un sistema non omogeneo:
+\begin{enumerate}
+	\item Si risolve il sistema omogeneo associato. Cioè determino una matrice Wronskiana $W(t) = \left[y_{0_1}(t)\ldots y_{0_n}(t)\right]$\\
+			Integrale generale: $ \underline{y}(t) = W(t)\cdot \underline{c}, \quad \underline{c}\in\mathbb{R}^n$
+	\item Due possibilità: \begin{itemize}
+		\item cerco una soluzione particolare con il metodo di somiglianza \\ $\underline{y}(t) = \underline{y}_0(t) + \underline{y}_p(t) = W(t) \cdot \underline{c} + \underline{y}_p(t)$
+		\item uso $W(t)$ per trovare direttamente l'integrale generale tramite la formula:\\$ \underline{y}(t) = W(t) \left(\int\left[W(\tau)\right]^{-1}\cdot \underline{b}(\tau)\right) = W(t) \int \left[W(\tau)\right]^{-1} \cdot \underline{b}(\tau) d\tau + W(t)\cdot \underline{c}$
+		Confronto le due soluzioni.\\
+		Nella prima ho $W(t)\cdot\underline{c}$ e anche nella seconda, ed è l'integrale generale dell'omogenea.\\
+		Quindi $y_p(t) = \underline{y}(t) - W(t)\int \left[W(\tau)\right]^{-1} \cdot \underline{b}(\tau) d\tau$ perché è ciò che resta da uguagliare.\\
+		In particolare, se $A$ è diagonalizzabile reale, allora una matrice Wronskiana è $W(t) = e^{At}$\\
+		$\underline{y}(t) = e^{At} \left[\int e^{-At}\cdot \underline{b}(\tau) d\tau + \underline{c}\right] $\\
+		\emph{Osservazioni da aggiungere.}\\
+		\emph{Esempio da aggiungere.}	
+	\end{itemize}
 
 
 
-\chapter{}
+\end{enumerate}
+
+\chapter{Serie di funzioni}
+
+
+\section{Generalità sulle serie di funzioni}
+Esempio: Sviluppi di Taylor:
+\begin{equation}
+e^x = \sum_{n=0}^\infty \frac{x^n}{n!} = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \ldots
+\end{equation}
+\begin{equation}
+	\frac{1}{1-x} = \sum_{n=0}^\infty x^n = 1 + x + x^2 + x^3 + \ldots
+\end{equation}
+
+\begin{definition}
+	\ \\
+	Date delle funzioni $f: J\subseteq\mathbb{R}\to\mathbb{R}$ \quad $n=(0,1,2,\ldots)$
+	\begin{itemize}
+		\item La serie di funzioni a termine generale $f_n(x)$ è la successione delle somme parziali \\ $S_n(x) = \sum_{k=0}^n f_k(x)$\\
+				\emph{Oss: }Fissato $\overline{x}\in J$ si tratta di una serie numerica
+		\item La serie di funzioni converge puntualmente (o semplicemente) nel punto $\overline{x}_0\in J$ se la serie numerica di termini generale $f_n(\overline{x})$ è convergente, cioè se esiste finito il limite: \\ $\lim_{n\to\infty} S_n(\overline{x}) = \sum_{k=0}^\infty f_k(\overline{x})$
+		\item Chiamiamo insieme di convergenza puntuale (o semplice) l'insieme $E \subseteq J$ dei punti $\overline{x}_0$ in cui la serie di funzioni converge puntualmente.\\ Nell'insieme $E$ risulta così definita una nuova funzione, detta somma della serie, che si indica con il simbolo: \\ $f(x) = \sum_{k=0}^\infty f_k(x) \quad (x \in E)$\\ Significa: \\ $f(x) = \lim_{n\to\infty} S_k(x) \quad (x \in E)$
+		\item La serie di funzioni converge assolutamente in $\overline{x} \in J$ se la serie numerica di termine generale $f_n(\overline{x})$ converge.\\ \emph{Oss:} la convergenza assoluta...
+	\end{itemize}
+\end{definition}
+
+\emph{Esempio fondamentale: Serie geometrica.}\\
+$\sum_{n=0}^\infty x^n$\\
+\emph{Oss.}Servirà per la serie di potenze: $\sum_{n=0}^\infty a_n(x-x_0)^n$\\
+insieme convergenza puntuale $E = (-1,1)= \left\{ \left\lvert x\right\rvert <1\right\}$\\
+Per $x \leq  -1$ è indeterminata\\
+per $x \geq 1$ è divergente\\
+per ... 
+\bigskip\\
+\textbf{Serie di Riemann}\\
+$\sum_{n=0}^\infty \frac{1}{n^x} \quad \quad f_n(x)=\frac{1}{n^x}=\left(\frac{1}{n}\right)^x$
+L'insieme di convergenza puntuale è:\\
+$E=(1,\infty) = \left\{ x>1 \right\}$\\
+La convergenza è anche assoluta in $E$ perché per $x\in E \quad \quad \left\lvert f_n(x)\right\rvert = f_n(x)$
+\bigskip\\
+Se $x=1$ è la serie armonica $\sum_{n=1}^\infty \frac{1}{n}$ che diverge.\\
+\SectionBreak
+\medskip
+\emph{Problema:} se le funzioni $f_n$ sono continue, anche $f$ lo è? \textbf{Segue...}
+
+\subsection{Convergenza totale di una serie di funzioni}
+\emph{\textbf{copiare appunti della prof, formule e grafici}}\\
+\begin{definition}
+	Importante\\
+	Diciamo che la serie di termine generale $f_n(x), x\in J$ converge totale in $I \in J$ se esiste una successione numerica $a_n$ tale che: 
+	\begin{enumerate}
+		\item[$i )$] $\lim_{n\to\infty} \left\lvert f_n(x) - a_n\right\rvert = 0 \quad \forall x \in I \quad \forall n$\\
+		\item[$ii )$] $\sum_{n=0}^\infty a_n < \infty$
+	\end{enumerate}
+\end{definition}
+\emph{Oss:} \begin{itemize}
+	\item La nozione di convergenza totale riguarda un intervallo, mai un punto.
+	\item La convergenta totale in $I$ implica la convergenza assoluta (quindi anche puntuale) in ogni punto di $I$.
+	\item \textbf{Attenzione:} non vale il viceversa: se una serie converge assolutamente in ogni punto di $I$ non è detto che converga totalmente in $I$.
+\end{itemize}
+\newpage
+\section{serie di potenze}
+
+\section{serie di Fourier}
 
 
 
 
-
+\cleardoublepage
 
 \end{document}
