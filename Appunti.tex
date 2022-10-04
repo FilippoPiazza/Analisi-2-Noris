@@ -1,11 +1,15 @@
 \documentclass{book}
-\usepackage{pgfplots}
-\usepackage{imakeidx}
-\usepackage{amsfonts}
-\usepackage{amsthm}
-\usepackage{tikz}
-\usepackage{array}
-\usepackage{imakeidx}
+\usepackage[x11names]{xcolor}	% colori
+\usepackage{pgfplots}			% grafici
+\usepackage{imakeidx}			% indice
+\usepackage{amsfonts}			% font matematici	
+\usepackage{amsthm}				% teoremi				
+\usepackage{array}				% matrici
+\usepackage{mdframed}			% cornici al testo
+\usepackage{mathtools}			% matematica
+\usepackage{hyperref}			% collegamenti ipertestuali per l'indice
+\usepackage[italian]{babel}
+
 \newcommand{\SectionBreak}{%
     %\vskip 0.5ex
 
@@ -19,9 +23,20 @@
 
 }
 
-\newtheorem{definition}{Definizione}
-
+% Impostazioni grafici pgfplots, altrimenti si lamenta
 \pgfplotsset{compat=1.18}
+
+% Definizione dell'ambiente "Definizione"
+\newtheorem{defn}{Definizione}
+\newenvironment{definition}{\begin{mdframed}[backgroundcolor=Ivory2]\begin{defn}}{\end{defn}\end{mdframed}}
+
+% Definizione dell'ambiente "Dimostrazione"
+\newtheorem{demnstrn}{Dimostrazione}
+\newenvironment{dimostrazione}{\begin{mdframed}[backgroundcolor=LightCyan1]\begin{demnstrn}}{\end{demnstrn}\end{mdframed}}
+
+% Solo le equazioni referenziate vengono numerate
+% vedi https://tex.stackexchange.com/a/2602
+\mathtoolsset{showonlyrefs}  
 
 
 \author{F. Piazza \and G. Michieletto}
@@ -32,20 +47,52 @@
 	\bigskip
 	\bigskip
 
+
 	\begin{tikzpicture}
 	\begin{axis}[axis line style={draw=none}, colormap/bluered]
 	\pgfplotsset{ticks=none}
 	% \addplot [domain=0:1, samples=100, color=black, thick] {x};
-	\addplot3[surf, samples=50, opacity=0.5, shader=interp] {x^2-y^2};
+	% \addplot3[surf, samples=50, opacity=0.5, shader=interp] {x^2-y^2};
 	\end{axis}
 	\end{tikzpicture}
 }
 
 
 \begin{document}
-
-
 \maketitle
+
+\section*{}
+
+Gli esami non finiscono mai, amico mio! Così è la vita. \medskip \\
+\null\hfill- \textit{Denis Ivanovič Fonvizin}
+	
+Se 'ni mondo esistesse un po' di bene... \medskip \\
+\null\hfill- \textit{Pietro Pacciani}
+
+
+\tableofcontents
+
+\setcounter{chapter}{-1} % per evitare che il capitolo 1 venga numerato come 2
+\chapter{Cenni di Analisi I e Algebra Lineare}
+\section{Regole di integrazione e derivazione}
+
+\section{Serie numeriche}
+
+\section{Determinante di una matrice}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 \chapter{Equazioni differenziali}
 \section{Equazioni differenziali del 1° ordine}
@@ -64,7 +111,6 @@ Esempi:
 			Dovrò quindi risolvere la EDO separatamente nelle due regioni.
 			$$ \left\{\begin{array}{lr} y'(0)=\frac{1}{t},	t>0 \Rightarrow y(t) = ln(t)+c\\ y'(0)=\frac{1}{t},	t<0 \Rightarrow y(t) = ln(-t)+c \end{array}\right. $$
 \end{itemize}
-\SectionBreak
 \begin{definition}
 	Si chiama \emph{integrale generale} l'insieme delle soluzioni.
 \end{definition}
@@ -79,7 +125,7 @@ Esempi:
 \end{itemize}
 \textbf{Oss:} La EDO $y'_{(t)} = f(t,y_{(t)})$ è definita per $(t,y)\in dom(f)$
 
-\subsection*{Soluzioni costanti di EDO del 1° ordine}
+\subsection{Soluzioni costanti di EDO del 1° ordine}
 \begin{definition}
 	Una soluzione costante di una EDO del 1° ordine è una funzione $y(t)$ che sia soluzione.
 \end{definition}
@@ -101,7 +147,7 @@ Esempi:
 
 \SectionBreak
 
-\subsection*{EDO a variabili separabili}
+\subsection{EDO a variabili separabili}
 \begin{definition}
 	Una EDO del 1° ordine è detta \emph{a variabili separabili} se è del tipo
 	\begin{equation}
@@ -110,16 +156,22 @@ Esempi:
 	dove $f$ e $g$ sono funzioni continue su intervalli $J_1,J_2\subseteq\mathbb{R}$.
 \end{definition}
 
-\begin{center}
-	
-\textbf{Da integrare con gli appunti della professoressa.\\Lezione del 14/09/2022}
 
-\end{center}
+
+	%scrivi in grassetto "Esempio"
+	\textbf{Esempio}
+	\begin{center}
+		
+		\newline
+		$y'(t)=\frac{1}{t}$ $\; h(t)=\frac{1}{t}$ $\;j_1=(-\infty,0)U(0,\infty)=\mathbb{R}$-{0}
+		
+	\end{center}
 
 
 
 \SectionBreak
-\subsection*{Problema di Cauchy}
+\newpage
+\subsection{Problema di Cauchy}
 \begin{definition}
 	Data una EDO del 1° ordine $y'_{(t)} = f(t,y_{(t)})$ sia $(t_{0}, y_{0})$ dove la EDO è definita.
 	Cioè $(t_{0},y_{0})\in dom(f)$ \\
@@ -128,7 +180,7 @@ Esempi:
 \end{definition}
 Nota: il sistema ha una condizione perché è del 1° ordine. La condizione trova la soluzione particolare che passa per $(t_{0},y_{0})$.\\
 \SectionBreak
-\subsection*{Come si risolve?}
+\subsection{Come si risolve?}
 Step:
 \begin{enumerate}
 	\item Trova l'integrale generale. ($\infty^1$ soluzioni dipendenti da 1 parametro)
@@ -136,11 +188,11 @@ Step:
 	\item Sostituisco $c$ in 1.
 \end{enumerate}
 
-\subsubsection*{Esempi}
+\subsubsection{Esempi}
 Aggiungi Esempi\\
 \SectionBreak
 
-\subsection*{EDO 1° ordine lineari}
+\subsection{EDO 1° ordine lineari}
 \begin{definition}
 	Una EDO del 1° ordine lineare in forma normale è:\\
 	\begin{equation}
@@ -160,7 +212,7 @@ Esempio:\\
 Aggiungi esempi
 \\
 \SectionBreak
-\subsection*{Principio di sovrapposizione}
+\subsection{Principio di sovrapposizione}
 Sia $a: J\subseteq\mathbb{R} \to \mathbb{R}$ una funzione continua su $J$.\\L'applicazione $\mathcal{L}(y)=y'-a(t)\cdot y$ è lineare.\medskip\\
 Più esplicitamente, dati $c_1,c_2 \in \mathbb{R}$:\\
 $\mathcal{L}(c_1y_1+c_2y_2)=c_1\mathcal{L}(y_1)+c_2\mathcal{L}(y_2) \forall y_1,y_2$ funzioni derivabili.\medskip\\
@@ -170,10 +222,11 @@ se $\mathcal{L}(y_2)=b_2$ cioè $y'_2=a(t)y_2+b_2$\\
 allora $\mathcal{L}(c_1y_1+c_2y_2)=c_1b_1+c_2b_2$ cioè $y'_{(t)}=a(t)(c_1y_1+c_2y_2)+c_1b_1+c_2b_2$\\
 cioè $(c_1y_1+c_2y_2)'=a(t)(c_1y_1+c_2y_2)+c_1b_1+c_2b_2$\\
 \textbf{Oss:} \begin{itemize}
-	\item Prendo due soluzioni distinde della EDO \textbf{Recupera le osservazioni}
+	\item Prendo due soluzioni distinde della EDO 
+    \item  $y'=a(t)y + b(t)$\\
 \end{itemize}
 \SectionBreak
-\subsection*{Esistenza e unicità globale di Cauchy}
+\subsection{Esistenza e unicità globale di Cauchy}
 Siano $J\subseteq\mathbb{R}$ intervallo e $a,b: J\to \mathbb{R}$ continue.\\
 Per ogni $t_0\in J, y_0 \in \mathbb{R}$ il problema di Cauchy:
 \begin{equation}
@@ -184,7 +237,7 @@ ha una soluzione unica $y: J\to \mathbb{R}$ definita su $J$.\\
 
 \SectionBreak
 
-\subsection*{Teorema Formula risolutiva per EDO lineari 1° ordine}
+\subsection{Teorema Formula risolutiva per EDO lineari 1° ordine}
 $a,b: J\subseteq\mathbb{R}\to\mathbb{R}$ \quad $y'(t) = a(t)y(t)+b(t)$\\
 L'integrale generale è dato dalla formula:
 \begin{equation}
@@ -192,7 +245,8 @@ L'integrale generale è dato dalla formula:
 \end{equation}
 dove $A(t)$ è una primitiva di $a$.\\
 
-\emph{\textbf{Dim. 1 - da sapere all'esame}}\\
+\begin{dimostrazione}
+\emph{\textbf{da sapere all'esame}}\\
 \begin{itemize}
 	\item Porto $ay$ sulla sinistra\\
 			$y'-ay=b$
@@ -207,10 +261,11 @@ dove $A(t)$ è una primitiva di $a$.\\
 	\item Moltiplico tutto per $e^{A(t)}$\\
 			$y(t)=e^{A(t)}\left(\int be^{-A(t)}dt+c\right)$
 \end{itemize}
+\end{dimostrazione}
 
 \SectionBreak
 
-\subsection*{Equazione di Bernoulli}
+\subsection{Equazione di Bernoulli}
 \begin{definition}
 	Si chiamano \emph{equazione di Bernoulli} le EDO del 1° ordine lineari di forma:\\
 	\begin{equation}
@@ -241,7 +296,7 @@ dove $A(t)$ è una primitiva di $a$.\\
 
 \SectionBreak
 
-\subsection*{Equazione Logistica}
+\subsection{Equazione Logistica}
 $y(t) = $ numero di individui infetti al tempo $t$\\
 $y: J\subseteq\mathbb{R}^+\to\mathbb{R}^+$
 \bigskip\\
@@ -255,7 +310,7 @@ integrale generale:
 	$y(t) = y(0)e^{kt} $con$ c>0$\\
 
 
-\textbf{2° Modello: Verhulst (metà '800)}\\
+\noindent{\textbf{2° Modello: Verhulst (metà '800)}}\\
 \begin{equation}
 	y'(t)=ky(t)-hy(t)^2 \quad  \textnormal{con } k,h > 0
 \end{equation}
@@ -290,10 +345,253 @@ Il modello prende anche in considerazione la competizione per le risorse al cres
 
 	\end{axis}
 \end{tikzpicture}
-\bigskip
+
+\newpage % verifica
+
+\section[EDO 2° ordine lineari]{Equazioni differenziali ordinarie del 2° ordine lineari}{}
+\subsection{Teorema di struttura dell'integrale generale di EDO del 2° ordine lineari omogenee}
+Siano $a,b,c : I \subseteq \mathbb{R} \to \mathbb{R}$ funzioni continue e $a \neq 0$ in $I$.\\
+L'integrale generale dell'eq. omogenea
+\begin{equation}
+	a(t)y''(t) + b(t)y'(t) + c(t)y(t) = 0
+\end{equation}
+è uno spazio vettoriale di dimensione 2, cioè le soluzioni sono tutte e sole della forma:
+\begin{equation}
+	y_0(t) = c_1y_{0_1}+c_2y_{0_2} \quad \textnormal{con } c_1,c_2 \in \mathbb{R}^n
+\end{equation}
+dove $y_{0_1},y_{0_2}$ sono due soluzioni linearmente indipendenti.\\
+
+
+\emph{Oss:} Dire che due soluzioni sono linearmente indipendenti significa che non esiste un coefficiente $c$ tale che $c\cdot y_1 = y_2$, ovvero che non sono una multipla dell'altra.\\
+\emph{Premesse:}
+\begin{enumerate}
+\item Spazio vettoriale $V=C^2(I)$
+\item $I\subseteq\mathbb{R}$ funzione di 1 variabile $y(t)$
+\item $C^2(I) = \{y:I \to \mathbb{R}$, derivabili in $I$ e $y'$ continua in $I\}$
+\item $C^2(I) = \{y \in C^1(I)$, derivabili due volte in $I$ con $y''$ continua in $I\}$
+\item $C^2(I)$ è uno spazio vettoriale con le operazioni usuali di somma di funzioni e prodotto di funzione per uno scalare.
+\end{enumerate}
+
+\begin{dimostrazione}
+	
+
+\emph{\textbf{da sapere all'esame}}
+\begin{itemize}
+\item L'integrale generale dell'omogenea è:\\
+		$W = \{y \in V : ay''(t) + by'(t) + cy(t) = 0\}$
+\item W è un sottospazio vettoriale di V $\Leftrightarrow$ è chiuso rispetto alla somma e rispetto al prodotto per uno scalare. Questo è vero grazie al principio di sovrapposizione (caso particolare dell'omogenea).
+\item Devo dimostrare che W ha dimensione 2.
+\begin{enumerate}
+	\item[$i ) $] Determinare 2 soluzioni lineari indipendenti dell'equazione $y_{0_1}, y_{0_2}$
+	\item[$ii )$] Dimostrare che ogni soluzione $y$ della EDO si scrive come combinazione lineare di $y_{0_1}, y_{0_2}$
+	\item [$i )$] Scelgo $y_{0_1}$ soluzione del problema di Cauchy.\\
+				$$
+				\left\{
+				\begin{array}{ll}
+					ay''_{0_1}(t) + by'_{0_1}(t) + cy_{0_1}(t) = 0\\
+					y_{0_1}(0) = 1\\
+					y'_{0_1}(0) = 0
+				\end{array} \right.
+				$$
+				Verifico che $y_{0_1}, y_{0_2}$ sono soluzioni lineari indipendenti. Se per assurdo fossero una multiplo dell'altra\\
+				$ y_{0_1}(t) = \lambda y_{0_2}(t) \quad \forall t$\\
+				In particolare, per $t=0$ avrei $y_{0_1}(0) = \lambda y_{0_2}(0)$ avrei trovato $1=\lambda\cdot 0$ assurdo.
+	\item [$ii )$] Sia $y_0(t)$ soluzione dell'EDO, cerco $c_1,c_2\in \mathbb{R}$ tali che $y_0(t) = c_1y_{0_1}(t) + c_2y_{0_2}(t)$\\
+					$ y_0(t) = c_1y_{0_1}(t) + c_2y_{0_2}(t) = c_1$\\
+					\medskip
+					$ y_0'(t) = c_1y_{0_1}'(t) + c_2y_{0_2}'(t) = c_2$\\
+					In conclusione la funzione:\\
+					$z(t) = y_0(0)\cdot y_{0_1}(t) + y_0'(0)\cdot y_{0_2}(t)$\\
+					risolve lo stesso problema di Cauchy di $y_0(t)$ e quindi, grazie al teorema di esistenza e unicità di Cauchy, coincidono:\\
+					$y_0(t) = z(t) \quad \forall t$,\\
+					cioè $y_0(t)$ si scrive come combinazione lineare di $y_{0_1}, y_{0_2}$ con coefficienti $c_1=y_0(0)$ e $c_2=y_0'(0)$.\\
+\end{enumerate}
+\end{itemize}
+\end{dimostrazione}
 \SectionBreak
 
+\subsection{Struttura dell'integrale generale di EDO del 2° ordine lineari non omogenee}
+Siano $a,b,c:\mathbb{R} \to \mathbb{R}$ con $a\neq 0$ in $I$\\
+L'integrale generale dell'eq. completa
+\begin{equation}
+	ay''(t) + by'(t) + cy(t) = f(t)
+\end{equation}
+è:
+\begin{equation}
+	y(t) = y_0(t) + y_p(t)
+\end{equation}
+dove la $y_0(t)$ è l'integrale dell'eq. omogenea, come nel teorema precedente, e la $y_p(t)$ è una soluzione particolare dell'eq. compleata.\\
 
+\emph{Oss:} L'integrale generale di una EDO del secondo ordine lineare non omogenea è quindi uno spazio affine (cioè il translato di uno spazio vettoriale) di dimensione 2.\\
+% ripasso gal
+
+\begin{center}
+	\textbf{Fine lezione 21/09 c'è una scritta in fondo in rosso che non so cosa sia.}
+\end{center}
+
+
+
+\newpage
+\section{Sistemi differenziali lineari}
+Esempio introduttivo $F=ma$
+\begin{equation}
+	y''(t) = \frac{F}{m}
+\end{equation}
+Trasformo in un sistema di due equazioni differenziali di primo ordine:\\
+$ y_1(t) = y(t)$: posizione e $y_2(t) = y'(t) = y'_1(t)$: velocità.\\
+$$ \left\{\begin{array}{lr} y'_1(t)=y_2(t) \quad \quad \textnormal{la velocità è la derivata della posizione}\\ y'_2(t)=\frac{F}{m} \quad \quad \textnormal{l'accelerazione è la derivata della velocità}\end{array}\right. $$
+In forma matriciale:
+\begin{center}
+	\textbf{\emph{E mo come la disegno?\\...}}
+	
+\end{center}
+In forma compatta:
+$\underline{y'}(t) = A\underline{y}(t)+\underline{b}(t)$\\
+\begin{equation}
+	\underline{y'}(t) = \begin{pmatrix} y_1(t) \\ y_2(t) \end{pmatrix} \quad A = \begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix} \quad \underline{b} =\begin{pmatrix} 0 \\ \frac{F}{m} \end{pmatrix}
+\end{equation}
+
+\SectionBreak
+Esercizi:
+
+\begin{center}
+	\emph{\textbf{Esercizi qua}}
+\end{center}
+
+\SectionBreak
+\begin{definition}
+	\emph{Sistema differenziale lineare} è un sistema di equazioni differenziali di primo ordine con coefficienti costanti, cioè:
+	\begin{equation}
+		\underline{y'}(t) = A\underline{y}(t)+\underline{b}(t)
+	\end{equation}
+	dove $A$ è una matrice quadrata di ordine $n$ e $\underline{b}$ è un vettore di dimensione $n$.
+\end{definition}
+% ripasso gal
+\SectionBreak
+
+\subsection{Risultati teorici}
+Come si scrive un problema di Cauchy per un sistema?\\
+\emph{Esempio:} $y''(t)-2y'(t)=t$ con $y(0)=y_0$ e $y'(0)=v_0$\\
+Trasformo la EDO in sistema
+\begin{equation}
+	\left\{
+	\begin{array}{ll}
+		y'_1(t) = y_2(t)\\
+		y'_2(t) = 2y_2(t)+t
+	\end{array}
+	\right.
+\end{equation}
+Un problema di Cauchy è $$ \begin{array}{ll} y_1(t_0) = y_0 \\ y_2(t_0)=v_0  \end{array} \quad \quad \underline{y}(t_0) = \begin{pmatrix} y_0 \\ v_0 \end{pmatrix}$$\\
+
+\begin{definition}
+	Dato $\underline{y}'(t)=A\underline{y}(t)+\underline{b}(t)$ con $A$ matrice quadrata di ordine $n$ e $\underline{b}$ vettore di dimensione $n$\\
+	chiamiamo problema di Cauchy: $$ \left\{ \begin{array}{ll} \underline{y}'(t) = A \cdot y(t) + \underline{b}(t) \\ \underline{y}(t_0) = \underline{y}_0  \end{array} \right.$$
+\end{definition}
+
+\begin{center}
+	\emph{\textbf{Esempi}}
+\end{center}
+
+\SectionBreak
+
+\begin{center}
+	\emph{\textbf{C'è una pagina che non so se è spiegazione o esercizi, ci sono parti scritte in LaTeX e altre a mano.\\ * \\ * \\Prosegue poi con i sistemi omogenei.}}
+\end{center}
+
+\SectionBreak
+
+\section{Sistemi non omogenei}
+\subsection{Struttura dell'int. gen. dei sistemi non omogenei}
+\begin{center}
+	\emph{\textbf{Manca la definizione.}}
+\end{center}
+
+Praticamente, per risolvere un sistema non omogeneo:
+\begin{enumerate}
+	\item Si risolve il sistema omogeneo associato. Cioè determino una matrice Wronskiana $W(t) = \left[y_{0_1}(t)\ldots y_{0_n}(t)\right]$\\
+			Integrale generale: $ \underline{y}(t) = W(t)\cdot \underline{c}, \quad \underline{c}\in\mathbb{R}^n$
+	\item Due possibilità: \begin{itemize}
+		\item cerco una soluzione particolare con il metodo di somiglianza \\ $\underline{y}(t) = \underline{y}_0(t) + \underline{y}_p(t) = W(t) \cdot \underline{c} + \underline{y}_p(t)$
+		\item uso $W(t)$ per trovare direttamente l'integrale generale tramite la formula:\\$ \underline{y}(t) = W(t) \left(\int\left[W(\tau)\right]^{-1}\cdot \underline{b}(\tau)\right) = W(t) \int \left[W(\tau)\right]^{-1} \cdot \underline{b}(\tau) d\tau + W(t)\cdot \underline{c}$
+		Confronto le due soluzioni.\\
+		Nella prima ho $W(t)\cdot\underline{c}$ e anche nella seconda, ed è l'integrale generale dell'omogenea.\\
+		Quindi $y_p(t) = \underline{y}(t) - W(t)\int \left[W(\tau)\right]^{-1} \cdot \underline{b}(\tau) d\tau$ perché è ciò che resta da uguagliare.\\
+		In particolare, se $A$ è diagonalizzabile reale, allora una matrice Wronskiana è $W(t) = e^{At}$\\
+		$\underline{y}(t) = e^{At} \left[\int e^{-At}\cdot \underline{b}(\tau) d\tau + \underline{c}\right] $\\
+		\emph{Osservazioni da aggiungere.}\\
+		\emph{Esempio da aggiungere.}	
+	\end{itemize}
+
+
+
+\end{enumerate}
+
+\chapter{Serie di funzioni}
+
+
+\section{Generalità sulle serie di funzioni}
+Esempio: Sviluppi di Taylor:
+\begin{equation}
+e^x = \sum_{n=0}^\infty \frac{x^n}{n!} = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \ldots
+\end{equation}
+\begin{equation}
+	\frac{1}{1-x} = \sum_{n=0}^\infty x^n = 1 + x + x^2 + x^3 + \ldots
+\end{equation}
+
+\begin{definition}
+	\ \\
+	Date delle funzioni $f: J\subseteq\mathbb{R}\to\mathbb{R}$ \quad $n=(0,1,2,\ldots)$
+	\begin{itemize}
+		\item La serie di funzioni a termine generale $f_n(x)$ è la successione delle somme parziali \\ $S_n(x) = \sum_{k=0}^n f_k(x)$\\
+				\emph{Oss: }Fissato $\overline{x}\in J$ si tratta di una serie numerica
+		\item La serie di funzioni converge puntualmente (o semplicemente) nel punto $\overline{x}_0\in J$ se la serie numerica di termini generale $f_n(\overline{x})$ è convergente, cioè se esiste finito il limite: \\ $\lim_{n\to\infty} S_n(\overline{x}) = \sum_{k=0}^\infty f_k(\overline{x})$
+		\item Chiamiamo insieme di convergenza puntuale (o semplice) l'insieme $E \subseteq J$ dei punti $\overline{x}_0$ in cui la serie di funzioni converge puntualmente.\\ Nell'insieme $E$ risulta così definita una nuova funzione, detta somma della serie, che si indica con il simbolo: \\ $f(x) = \sum_{k=0}^\infty f_k(x) \quad (x \in E)$\\ Significa: \\ $f(x) = \lim_{n\to\infty} S_k(x) \quad (x \in E)$
+		\item La serie di funzioni converge assolutamente in $\overline{x} \in J$ se la serie numerica di termine generale $f_n(\overline{x})$ converge.\\ \emph{Oss:} la convergenza assoluta...
+	\end{itemize}
+\end{definition}
+
+\emph{Esempio fondamentale: Serie geometrica.}\\
+$\sum_{n=0}^\infty x^n$\\
+\emph{Oss.}Servirà per la serie di potenze: $\sum_{n=0}^\infty a_n(x-x_0)^n$\\
+insieme convergenza puntuale $E = (-1,1)= \left\{ \left\lvert x\right\rvert <1\right\}$\\
+Per $x \leq  -1$ è indeterminata\\
+per $x \geq 1$ è divergente\\
+per ... 
+\bigskip\\
+\textbf{Serie di Riemann}\\
+$\sum_{n=0}^\infty \frac{1}{n^x} \quad \quad f_n(x)=\frac{1}{n^x}=\left(\frac{1}{n}\right)^x$
+L'insieme di convergenza puntuale è:\\
+$E=(1,\infty) = \left\{ x>1 \right\}$\\
+La convergenza è anche assoluta in $E$ perché per $x\in E \quad \quad \left\lvert f_n(x)\right\rvert = f_n(x)$
+\bigskip\\
+Se $x=1$ è la serie armonica $\sum_{n=1}^\infty \frac{1}{n}$ che diverge.\\
+\SectionBreak
+\medskip
+\emph{Problema:} se le funzioni $f_n$ sono continue, anche $f$ lo è? \textbf{Segue...}
+
+\subsection{Convergenza totale di una serie di funzioni}
+\emph{\textbf{copiare appunti della prof, formule e grafici}}\\
+\begin{definition}
+	Importante\\
+	Diciamo che la serie di termine generale $f_n(x), x\in J$ converge totale in $I \in J$ se esiste una successione numerica $a_n$ tale che: 
+	\begin{enumerate}
+		\item[$i )$] $\lim_{n\to\infty} \left\lvert f_n(x) - a_n\right\rvert = 0 \quad \forall x \in I \quad \forall n$\\
+		\item[$ii )$] $\sum_{n=0}^\infty a_n < \infty$
+	\end{enumerate}
+\end{definition}
+\emph{Oss:} \begin{itemize}
+	\item La nozione di convergenza totale riguarda un intervallo, mai un punto.
+	\item La convergenta totale in $I$ implica la convergenza assoluta (quindi anche puntuale) in ogni punto di $I$.
+	\item \textbf{Attenzione:} non vale il viceversa: se una serie converge assolutamente in ogni punto di $I$ non è detto che converga totalmente in $I$.
+\end{itemize}
+\newpage
+\section{serie di potenze}
+
+\section{serie di Fourier}
+
+
+
+
+\cleardoublepage
 
 \end{document}
-
