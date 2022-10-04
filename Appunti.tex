@@ -1,4 +1,4 @@
-\documentclass{scrreprt}
+\documentclass{book}
 \usepackage[x11names]{xcolor}	% colori
 \usepackage{pgfplots}			% grafici
 \usepackage{imakeidx}			% indice
@@ -52,7 +52,7 @@
 	\begin{axis}[axis line style={draw=none}, colormap/bluered]
 	\pgfplotsset{ticks=none}
 	% \addplot [domain=0:1, samples=100, color=black, thick] {x};
-	 \addplot3[surf, samples=50, opacity=0.5, shader=interp] {x^2-y^2};
+	% \addplot3[surf, samples=50, opacity=0.5, shader=interp] {x^2-y^2};
 	\end{axis}
 	\end{tikzpicture}
 }
@@ -66,6 +66,8 @@
 Gli esami non finiscono mai, amico mio! Così è la vita. \medskip \\
 \null\hfill- \textit{Denis Ivanovič Fonvizin}
 	
+Se 'ni mondo esistesse un po' di bene... \medskip \\
+\null\hfill- \textit{Pietro Pacciani}
 
 
 \tableofcontents
@@ -154,11 +156,16 @@ Esempi:
 	dove $f$ e $g$ sono funzioni continue su intervalli $J_1,J_2\subseteq\mathbb{R}$.
 \end{definition}
 
-\begin{center}
-	
-\textbf{Da integrare con gli appunti della professoressa.\\Lezione del 14/09/2022}
 
-\end{center}
+
+	%scrivi in grassetto "Esempio"
+	\textbf{Esempio}
+	\begin{center}
+		
+		\newline
+		$y'(t)=\frac{1}{t}$ $\; h(t)=\frac{1}{t}$ $\;j_1=(-\infty,0)U(0,\infty)=\mathbb{R}$-{0}
+		
+	\end{center}
 
 
 
@@ -340,19 +347,6 @@ Il modello prende anche in considerazione la competizione per le risorse al cres
 \end{tikzpicture}
 
 \newpage % verifica
-\textbf{Integrale generale dell'Equazione Logistica}\\
-Trovo l'integrale generale risolvendo come Bernoulli
-\begin{enumerate}
-
-    \item Soluzioni costanti\hspace{1cm}  $y(t)=0,\hspace{0.5cm}   y(t)=\frac{k}{h}$
-    \item Divido per $y^2: \hspace{0.5cm}   \frac{y'(t)}{y^2(t)} = \frac{k}{y(t)}-h$ 
-    \item Pongo $z'(t)=\frac{1}{y(t)}=-\frac{k}{y(t)}+h=-kz(t)+h$ ricavo che $z'(t) + kz(t)=h$
-    \item $z(t)= e^{-\int k}[\int e^{\int k}h dx+c]$\\\\$=e^{-kt}[h\int e^{kx} dx+c]$\\\\$=e^{-kt}[\frac{h}{k}e^{kt}+c]$\\\\$=\frac{\frac{h}{k}e^{kt}+c}{e^{kt}}$
-    \item $y(t)=\frac{1}{z(t)}=\frac{e^{kt}}{\frac{h}{k}e^{kt}+c}=\frac{ke^{kt}}{he^{kt}+kc}$\\ possiamo scrivere $kc=c'$ in quanto costante arbitraria
-    
-\end{enumerate}
-
-\newpage
 
 \section[EDO 2° ordine lineari]{Equazioni differenziali ordinarie del 2° ordine lineari}{}
 \subsection{Teorema di struttura dell'integrale generale di EDO del 2° ordine lineari omogenee}
