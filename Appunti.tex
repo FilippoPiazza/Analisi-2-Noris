@@ -73,11 +73,12 @@ Gli esami non finiscono mai, amico mio! Così è la vita. \medskip \\
 \setcounter{chapter}{-1} % per evitare che il capitolo 1 venga numerato come 2
 \chapter{Cenni di Analisi I e Algebra Lineare}
 \section{Regole di integrazione e derivazione}
+prova
 
 \section{Serie numeriche}
 
 \section{Determinante di una matrice}
-
+s
 
 
 
@@ -591,9 +592,67 @@ Se $x=1$ è la serie armonica $\sum_{n=1}^\infty \frac{1}{n}$ che diverge.\\
 	\item La convergenta totale in $I$ implica la convergenza assoluta (quindi anche puntuale) in ogni punto di $I$.
 	\item \textbf{Attenzione:} non vale il viceversa: se una serie converge assolutamente in ogni punto di $I$ non è detto che converga totalmente in $I$.
 \end{itemize}
-\newpage
-\section{serie di potenze}
 
+
+
+
+\section*{inizio lezione 05/10/2022}
+\emph{Oss:} Se una serie di funzioni converge totalmente in $I$ allora converge totalmente in ogni sottoinsieme di $I$.\\
+\textbf{Esercizio:} Studiare la convergenza totale della serie:\\
+\begin{equation}
+	\sum_{n=0}^\infty \frac{\sin{(nx)}}{n^3}
+\end{equation}
+
+\textbf{Esercizio:} Studiare la convergenza totale della serie geometrica:\\
+\begin{equation}
+	\sum_{n=0}^\infty x^n
+\end{equation}
+
+\textbf{\emph{Appunti su convergenza semplice, assoluta, puntuale, e totale}\\}
+\subsection{Conseguenze della convergenza totale}
+\begin{definition} Continuità della somma\\
+	Siano $f_n(x)$ funzioni definite su un intervallo $I\subseteq \mathbb{R}$. Se:
+	\begin{enumerate}
+		\item[$i)$] $f_n(x)$ è continua in $I$ per ogni $n$
+		\item[$ii)$] la serie di funzioni $\sum_{n=0}^\infty f_n(x)$ converge totalmente in $I$
+	\end{enumerate}
+	Allora la funzione somma $f(x) = \sum_{n=0}^\infty f_n(x)$ è continua in $I$.\\
+\emph{Oss:} in particolare, $f$ è integrabile in ogni sottoinsieme chiuso e limitato $\left[c,d\right] \subseteq I$
+\end{definition}
+
+\begin{definition} Integrabilità termine a termine
+	Nelle stesse ipotesi del teorema precedente $f$ è integrabile in ogni $\left[c,d\right] \subseteq I$ chiuso e limitato e inoltre:
+	\begin{equation}
+		\int_{c}^{d} f(x) dx = \int_{c}^{d} \left(\sum_{n=0}^\infty \int_{c}^{d} f_n(x)\right)  dx = \sum_{n=0}^\infty \left(\int_{c}^{d} f_n(x) dx\right) 
+	\end{equation}
+	Quindi posso scambiare il simbolo di serie e quello di integrale.
+\end{definition}
+
+\emph{Oss:} Se $f(n)$ derivabili in $I$ e $\sum^\infty f_n'$ converge totalmente in $I$ allora $\left(\sum^\infty f_n(x)\right)' = \sum^\infty f_n'(x)$
+
+
+
+
+
+\section{serie di potenze}
+\begin{definition}
+	Una serie di potenze è una serie di funzioni della forma:
+	\begin{equation}
+		\sum_{n=0}^\infty a_n \left(x-x_0\right)^n = a_0+a_1(x-x_0)+a_2(x-x_0)^2+\dots 
+	\end{equation}
+	Con $a_n \in \mathbb{R}$ coefficienti della serie\\
+	$x_0 \in \mathbb{R}$ centro della serie
+\end{definition}
+\emph{Convenzione:} se $x=x_0$ e $n=0$ $\left(x_0-x_0\right)^0 = 1$. Quindi, per $x=x_0$ la serie di potenze diventa:
+\begin{equation}
+	\sum_{n=0}^\infty a_n \left(x_0-x_0\right)^n = a_0+a_1(x_0-x_0)+a_2(x_0-x_0)^2+\dots = a_0
+\end{equation}
+Cioè tutte le serie di potenze convergono almeno nel loro centro $x=x_0$.\\
+
+\section*{fine lezione 05/10/2022}
+
+
+\newpage
 \section{serie di Fourier}
 
 
