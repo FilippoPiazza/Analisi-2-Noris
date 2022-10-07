@@ -635,8 +635,93 @@ Se $x=1$ è la serie armonica $\sum_{n=1}^\infty \frac{1}{n}$ che diverge.\\
 \end{equation}
 Cioè tutte le serie di potenze convergono almeno nel loro centro $x=x_0$.\\
 
-\section*{fine lezione 05/10/2022}
+\section*{inizio lezione 07/10/2022}
+\emph{ripasso convergenza totale}\\
+\emph{integra}
+\begin{itemize}
+	
 
+	\item vedremo in dettaglio che la serie esponenziale $e^x=\sum_{n=0}^\infty \frac{x^n}{n!} \quad a_n = \frac{1}{n!}$ ha come insieme di convergenza $\mathbb{R}$\\
+			la serie $metti serie$ converge rapidamente. Criterio del rapporto $l=lim_{n\to\infty} \frac{a_{n+1}}{a_n} = \lim{n\to\infty}\frac{1}{n+1}=0<1$\\
+	\item la serie logaritmica $ln(1+x)=\sum_{n=1}^\infty \frac{(-1)^{n+1}}{n}x^n \quad a_n = \frac{(-1)^{n+1}}{n}$ ha come insieme di convergenza $E=(-1,1)$\\
+\end{itemize}
+
+% teorema
+\begin{definition}
+	Raggio di convergenza\\
+	La serie di potenze reale $\sum_{n=0}^\infty a_n \left(x-x_0\right)^n$ si verifica sempre una delle tre:
+	\begin{enumerate}
+		\item raggio di convergenza nullo: la serie converge solo nel suo centro $x=x_0$
+		\item raggio di convergenza infinito: la serie converge assolutamente  $\forall x\in\mathbb{R}$
+		\item raggio di convergenza $0<R<+\infty$: esiste $R>0$ tale che:
+																\begin{itemize}
+																	\item la serie converge assolutamente $\forall x$ tale che $|x-x_0|<R$
+																	\item la serie non converge per $|x-x_0|>R$
+																\end{itemize}
+	\end{enumerate}
+	\emph{Oss:} in $|x_0+R|$ e $|x_0-R|$ potrebbe convergere o no, va studiato a parte in ogni esercizio.
+\end{definition}
+
+% teorema
+\begin{definition}
+	Calcolo del raggio di convergenza\\
+	Data una serie di potenze reale $\sum_{n=0}^\infty a_n \left(x-x_0\right)^n$\\
+	\begin{enumerate}
+		\item[$i)$] se il limite esiste.\\$R=\lim_{n\to\infty} \left\lvert \frac{a_n}{a_{n+1}}\right\rvert = \lim_{n\to\infty} \frac{|a_{n+1}|}{|a_n|}$\\allora la serie di potenze ha raggio di convergenza $R$.
+		\item[$ii)$] se esiste il limite $R=\lim_{n\to\infty} \frac{1}{\sqrt[n]{\left\lvert a_n\right\rvert }}$ allora la serie di potenze ha raggio di convergenza $R$.
+	\end{enumerate}
+\end{definition}
+
+\begin{dimostrazione} 
+	\emph{\textbf{da sapere all'esame}}\\
+	% \emph{teorema:} se $a_n \in \mathbb{R}$ e $a_n \to 0$ allora $\lim_{n\to\infty} \frac{a_n}{a_{n+1}} = 0$\\
+	La serie di potenze converge assolutamente nel punto $\overline{x} \in \mathbb{R}$ se e solo se\\
+	$\sum_{n=0}^\infty \left\lvert a_n\right\rvert  \left\lvert \overline{x} -x_0\right\rvert ^n$ converge.\\
+	\begin{itemize}
+		\item se il criterio del rapporto è applicabile, ho convergenze se e solo se\\$\lim_{n\to\infty} \frac{b_{n+1}}{b_n} < 1\Leftrightarrow \left\lvert \overline{x} -x_0 \right\rvert < \frac{1}{\lim_{n\to\infty} \frac{a_{n+1}}{a_n}} = \lim_{n\to\infty} \frac{\left\lvert a_n\right\rvert }{\left\lvert a_{n+1}\right\rvert } = R$
+		\item se il criterio della radice è applicabile, la serie converge se e solo se\\$\lim_{n\to\infty} \sqrt[n]{b_n}<1$ \textbf{manca roba}
+	\end{itemize}
+\end{dimostrazione}
+
+\begin{definition} % Convergenza totale per serie di potenze reali
+	Data una serie di potenze avente raggio di convergenza $0<R\leq +\infty$ si ha:
+	\begin{enumerate}
+		\item[$i)$] se $R=+\infty$ la serie converge totalmente in ogni intervallo chiuso e limitato $\left[c,d\right] $
+		\item[$ii)$] se $0<R<+\infty$ la serie converge totalmente in ogni intervallo chiuso  $\left[c,d\right] \subset \left(x_0-R,x_0+R\right)$
+	\end{enumerate}
+\end{definition}
+
+
+% teorema
+\begin{definition}
+	Data una serie di potenze reale $\sum_{n=0}^\infty a_n \left(x-x_0\right)^n$ avente raggio di convergenza $0<R<+\infty$, per ogni $x\in\left(x_0-R,x_0+R\right)$ vale la formula di integrazione termine a termine:
+	\begin{equation}
+		\int_{x_0}^{x} \sum_{n=0}^\infty a_n \left(t-x_0\right)^n dt = \sum_{n=0}^\infty \frac{a_n}{n+1} \left(x-x_0\right)^{n+1}
+	\end{equation}
+	La serie di potenze integrata $\sum_{n=0}^\infty \frac{a_n}{n+1} \left(x-x_0\right)^{n+1}$ converge per $x\in\left(x_0-R,x_0+R\right)$.
+\end{definition}
+
+\emph{Osservazione Importante:} Se la serie di potenze iniziale converge in $x_0-R$ (o $x_0+R$) posso integrare termine a termine fino a $x_0-R$ (o $x_0+R$).\\
+
+\begin{center}
+	$\cdots$
+\end{center}
+
+
+% teorema
+\begin{definition}
+	Derivabilità termine a termine per serie di potenze reali\\
+	Data una serie di potenze reale $\sum_{n=0}^\infty a_n \left(x-x_0\right)^n$ avente raggio di convergenza $0<R<+\infty$, per ogni $x\in\left(x_0-R,x_0+R\right)$ vale la formula di derivazione termine a termine.
+	\begin{equation}
+		\left(\sum_{n=0}^\infty a_n \left(x-x_0\right)^n\right)'  = \sum_{n=1}^\infty  a_n n \left(x-x_0\right)^{n-1}
+	\end{equation}
+	e la serie di potenze derivata ha raggio di convergenza $R$.\\
+	Si può iterare per ottenere serie derivate di ogni ordine, tutte con raggio di convergenza $R$.
+
+\end{definition}
+
+\noindent\emph{Conseguenza:} la somma di una serie di potenze è derivabile ad ogni ordine.\\
+\emph{Oss:} la serie derivata ha ancora raggio di convergenza $R$, ma il comportamente ai bordi $x_0\pm R$ può variare rispetto alla serie inerziale.\\
 
 \newpage
 \section{serie di Fourier}
