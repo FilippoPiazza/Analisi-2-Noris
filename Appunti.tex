@@ -30,6 +30,10 @@
 \newtheorem{defn}{Definizione}
 \newenvironment{definition}{\begin{mdframed}[backgroundcolor=Ivory2]\begin{defn}}{\end{defn}\end{mdframed}}
 
+% Definizione dell'ambiente "Teorema"
+\newtheorem{teorema}{Teorema}
+\newenvironment{thm}{\begin{mdframed}[backgroundcolor=Ivory2]\begin{teorema}}{\end{teorema}\end{mdframed}}
+
 % Definizione dell'ambiente "Dimostrazione"
 \newtheorem{demnstrn}{Dimostrazione}
 \newenvironment{dimostrazione}{\begin{mdframed}[backgroundcolor=LightCyan1]\begin{demnstrn}}{\end{demnstrn}\end{mdframed}}
@@ -39,7 +43,7 @@
 \mathtoolsset{showonlyrefs}  
 
 
-\author{F. Piazza \and G. Michieletto}
+\author{F. Piazza}
 \title{%
 	Appunti di Analisi Matematica II \\
 	\large corso della prof.ssa B.Noris \\
@@ -51,8 +55,8 @@
 	\begin{tikzpicture}
 	\begin{axis}[axis line style={draw=none}, colormap/bluered]
 	\pgfplotsset{ticks=none}
-	% \addplot [domain=0:1, samples=100, color=black, thick] {x};
-	 \addplot3[surf, samples=50, opacity=0.5, shader=interp] {x^2-y^2};
+	 \addplot [domain=0:1, samples=100, color=black, thick] {x};
+	% \addplot3[surf, samples=50, opacity=0.5, shader=interp] {x^2-y^2};
 	\end{axis}
 	\end{tikzpicture}
 }
@@ -73,7 +77,7 @@ Gli esami non finiscono mai, amico mio! Così è la vita. \medskip \\
 \setcounter{chapter}{-1} % per evitare che il capitolo 1 venga numerato come 2
 \chapter{Cenni di Analisi I e Algebra Lineare}
 \section{Regole di integrazione e derivazione}
-prova
+
 
 \section{Serie numeriche}
 
@@ -596,7 +600,7 @@ Se $x=1$ è la serie armonica $\sum_{n=1}^\infty \frac{1}{n}$ che diverge.\\
 
 \textbf{\emph{Appunti su convergenza semplice, assoluta, puntuale, e totale}\\}
 \subsection{Conseguenze della convergenza totale}
-\begin{definition} Continuità della somma\\
+\begin{thm} Continuità della somma\\
 	Siano $f_n(x)$ funzioni definite su un intervallo $I\subseteq \mathbb{R}$. Se:
 	\begin{enumerate}
 		\item[$i)$] $f_n(x)$ è continua in $I$ per ogni $n$
@@ -604,15 +608,15 @@ Se $x=1$ è la serie armonica $\sum_{n=1}^\infty \frac{1}{n}$ che diverge.\\
 	\end{enumerate}
 	Allora la funzione somma $f(x) = \sum_{n=0}^\infty f_n(x)$ è continua in $I$.\\
 \emph{Oss:} in particolare, $f$ è integrabile in ogni sottoinsieme chiuso e limitato $\left[c,d\right] \subseteq I$
-\end{definition}
+\end{thm}
 
-\begin{definition} Integrabilità termine a termine
+\begin{thm} Integrabilità termine a termine\\
 	Nelle stesse ipotesi del teorema precedente $f$ è integrabile in ogni $\left[c,d\right] \subseteq I$ chiuso e limitato e inoltre:
 	\begin{equation}
 		\int_{c}^{d} f(x) dx = \int_{c}^{d} \left(\sum_{n=0}^\infty \int_{c}^{d} f_n(x)\right)  dx = \sum_{n=0}^\infty \left(\int_{c}^{d} f_n(x) dx\right) 
 	\end{equation}
 	Quindi posso scambiare il simbolo di serie e quello di integrale.
-\end{definition}
+\end{thm}
 
 \emph{Oss:} Se $f(n)$ derivabili in $I$ e $\sum^\infty f_n'$ converge totalmente in $I$ allora $\left(\sum^\infty f_n(x)\right)' = \sum^\infty f_n'(x)$
 
@@ -646,8 +650,7 @@ Cioè tutte le serie di potenze convergono almeno nel loro centro $x=x_0$.\\
 	\item la serie logaritmica $ln(1+x)=\sum_{n=1}^\infty \frac{(-1)^{n+1}}{n}x^n \quad a_n = \frac{(-1)^{n+1}}{n}$ ha come insieme di convergenza $E=(-1,1)$\\
 \end{itemize}
 
-% teorema
-\begin{definition}
+\begin{thm}
 	Raggio di convergenza\\
 	La serie di potenze reale $\sum_{n=0}^\infty a_n \left(x-x_0\right)^n$ si verifica sempre una delle tre:
 	\begin{enumerate}
@@ -660,17 +663,16 @@ Cioè tutte le serie di potenze convergono almeno nel loro centro $x=x_0$.\\
 																\end{itemize}
 	\end{enumerate}
 	\emph{Oss:} in $|x_0+R|$ e $|x_0-R|$ potrebbe convergere o no, va studiato a parte in ogni esercizio.
-\end{definition}
+\end{thm}
 
-% teorema
-\begin{definition}
+\begin{thm}
 	Calcolo del raggio di convergenza\\
 	Data una serie di potenze reale $\sum_{n=0}^\infty a_n \left(x-x_0\right)^n$\\
 	\begin{enumerate}
 		\item[$i)$] se il limite esiste.\\$R=\lim_{n\to\infty} \left\lvert \frac{a_n}{a_{n+1}}\right\rvert = \lim_{n\to\infty} \frac{|a_{n+1}|}{|a_n|}$\\allora la serie di potenze ha raggio di convergenza $R$.
 		\item[$ii)$] se esiste il limite $R=\lim_{n\to\infty} \frac{1}{\sqrt[n]{\left\lvert a_n\right\rvert }}$ allora la serie di potenze ha raggio di convergenza $R$.
 	\end{enumerate}
-\end{definition}
+\end{thm}
 
 \begin{dimostrazione} 
 	\emph{\textbf{da sapere all'esame}}\\
@@ -683,23 +685,22 @@ Cioè tutte le serie di potenze convergono almeno nel loro centro $x=x_0$.\\
 	\end{itemize}
 \end{dimostrazione}
 
-\begin{definition} % Convergenza totale per serie di potenze reali
+\begin{thm} % Convergenza totale per serie di potenze reali
 	Data una serie di potenze avente raggio di convergenza $0<R\leq +\infty$ si ha:
 	\begin{enumerate}
 		\item[$i)$] se $R=+\infty$ la serie converge totalmente in ogni intervallo chiuso e limitato $\left[c,d\right] $
 		\item[$ii)$] se $0<R<+\infty$ la serie converge totalmente in ogni intervallo chiuso  $\left[c,d\right] \subset \left(x_0-R,x_0+R\right)$
 	\end{enumerate}
-\end{definition}
+\end{thm}
 
 
-% teorema
-\begin{definition}
+\begin{thm}
 	Data una serie di potenze reale $\sum_{n=0}^\infty a_n \left(x-x_0\right)^n$ avente raggio di convergenza $0<R<+\infty$, per ogni $x\in\left(x_0-R,x_0+R\right)$ vale la formula di integrazione termine a termine:
 	\begin{equation}
 		\int_{x_0}^{x} \sum_{n=0}^\infty a_n \left(t-x_0\right)^n dt = \sum_{n=0}^\infty \frac{a_n}{n+1} \left(x-x_0\right)^{n+1}
 	\end{equation}
 	La serie di potenze integrata $\sum_{n=0}^\infty \frac{a_n}{n+1} \left(x-x_0\right)^{n+1}$ converge per $x\in\left(x_0-R,x_0+R\right)$.
-\end{definition}
+\end{thm}
 
 \emph{Osservazione Importante:} Se la serie di potenze iniziale converge in $x_0-R$ (o $x_0+R$) posso integrare termine a termine fino a $x_0-R$ (o $x_0+R$).\\
 
@@ -708,8 +709,7 @@ Cioè tutte le serie di potenze convergono almeno nel loro centro $x=x_0$.\\
 \end{center}
 
 
-% teorema
-\begin{definition}
+\begin{thm}
 	Derivabilità termine a termine per serie di potenze reali\\
 	Data una serie di potenze reale $\sum_{n=0}^\infty a_n \left(x-x_0\right)^n$ avente raggio di convergenza $0<R<+\infty$, per ogni $x\in\left(x_0-R,x_0+R\right)$ vale la formula di derivazione termine a termine.
 	\begin{equation}
@@ -718,17 +718,224 @@ Cioè tutte le serie di potenze convergono almeno nel loro centro $x=x_0$.\\
 	e la serie di potenze derivata ha raggio di convergenza $R$.\\
 	Si può iterare per ottenere serie derivate di ogni ordine, tutte con raggio di convergenza $R$.
 
-\end{definition}
+\end{thm}
 
 \noindent\emph{Conseguenza:} la somma di una serie di potenze è derivabile ad ogni ordine.\\
 \emph{Oss:} la serie derivata ha ancora raggio di convergenza $R$, ma il comportamente ai bordi $x_0\pm R$ può variare rispetto alla serie inerziale.\\
 
+\section{Lezione del 12/10/2022}
+\begin{definition}
+	Una funzione di una variabile reale $f$ è detta analitica reale nell'intevallo non vuoto $(a,b)$ se è somma di una serie di potenze in $(a,b)$, cioè se esistono $x_0\in (a,b), a_n \in \mathbb{R}$ e tale che:\\
+	$f(x) = \sum_{n=0}^\infty a_n \left(x-x_0\right)^n$ per ogni $x\in (a,b)$.
+\end{definition}
+
+Se $f$ è analitica in $(a,b)$:
+\begin{itemize}
+	\item Qual è la regolarità minima di $f$?\\
+		\emph{Risposta:} $f$ derivabile ad ogni ordine in $(a,b)$.
+	\item Chi sono i coefficienti $a_n$?\\
+		\emph{Risposta:} $f(x_0) = \sum_{n=0}^\infty a_n \left(x-x_0\right)^n = a_0$\\
+		$f'(x_0) = \sum_{n=1}^\infty a_n n \left(x-x_0\right)^{n-1} = a_1$\\
+		$f''(x_0) = \sum_{n=2}^\infty a_n n(n-1) \left(x-x_0\right)^{n-2} = 2a_2$\\
+		$a_n = \frac{f^{(n)}(x_0)}{n!}$
+\end{itemize}
+
+\begin{thm}
+	\emph{Funzioni analitiche reali}\\
+	Se $f$ è analitica reale nell'intervallo non vuoto $(a,b)$ allora è derivabile ad ogni ordine in $(a,b)$ e per ogni $x_0\in (a,b)$ è sviluppabile in serie di Taylor. Cioè:
+	\begin{equation}
+		f(x) = \sum_{n=0}^\infty \frac{f^{(n)}(x_0)}{n!} \left(x-x_0\right)^n \quad x\in (a,b)
+	\end{equation}
+	Inoltre, detto $R$ il raggio di convergenza della serie, l'identità è verificata per ogni $x\in (x_0-R,x_0+R)$.
+\end{thm}
+
+\subsection*{Serie esponenziale}
+La funzione $e^x$ è analitica in $\mathbb{R}$ (non dimostriamo)\\
+La sua serie di Taylor con $x_0=0$ è:
+\begin{equation}
+	e^x = \sum_{n=0}^\infty \frac{x^n}{n!} = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \cdots
+\end{equation}
+Il raggio di convergenza è $R=+\infty$\\
+
+
+\emph{oss:} Non tutte le funzioni derivabili ad ogni ordine in un intervallo sono analitiche in quell'intervallo. [es. BCFTV II.4]
+
 \newpage
 \section{serie di Fourier}
+Segnale sonoro periodico:
+\begin{equation}
+	f(x)=3\cos(x)-\sin(2x)-\cos(10x)
+\end{equation}
+
+% grafico della funzione
+\begin{tikzpicture}
+\begin{axis}
+\addplot[domain=-10:10,samples=1000,smooth] {3*cos(x)-sin(2*x)-cos(10*x)};
+\end{axis}
+\end{tikzpicture}
+
+Per trasmettere il segnale basta comunicare i coefficienti:\\
+%tabella dei coefficienti
+
+\emph{integra}
+\section*{Lezione del 14/10/2022}
+
+\emph{Funzioni periodiche, polinomi e serie trigonometriche}\\
+Ricordiamo che $f:\mathbb{R}\to\mathbb{R}$ è periodica di periodo $T$ se  $f(x)=f(x+T)$ per ogni $x\in\mathbb{R}$.\\
+\emph{Oss:} 
+\begin{itemize}
+	\item Non ci sono ipotesi di regolarità su $f$.
+	\item Se $f$ è periodica di periodo $T$ allora è anche periodica di periodo $2T, 3T, 4T \cdots$
+	\item Se $f$ è periodica di periodo $T$ ed è pari (rispettivamente dispari) sul suo periodo, allora è anche pari (rispettivamente dispari) su $\mathbb{R}$.
+\end{itemize}
+% ripasso funzioni pari e dispari
+
+\begin{definition}
+	Chiamiamo armoniche $n$-esime le funzioni:
+	\begin{equation}
+		\cos(nx), \sin(nx)\quad \quad x\in\mathbb{R} n=1,2,3,\cdots
+	\end{equation}
+	Ogni armonica $n$-esima è periodica di periodo $\frac{2\pi}{n}$.
+\end{definition}
+\emph{Oss:} Tutte le armoniche $n$-esime sono anche periodiche di periodo $2\pi$\\
+Caso speciale: $n=0$ la funzione costante 1.
+
+\subsection{Formule di ortogonalità} % è una sottosezione? todo
+
+% 0 se n!=k. pi se n=k!=0
+\begin{equation}
+	\int_{-\pi}^\pi \cos(nx)\cos(kx)dx =
+		\begin{cases*}
+			0 	& se  $n\neq k$\\
+			\pi & se  $n=k\neq 0$
+		\end{cases*}
+\end{equation}
+\begin{equation}
+	\int_{-\pi}^\pi \sin(nx)\sin(kx)dx =
+		\begin{cases*}
+			0 	& se $n\neq k$\\
+			\pi & se $ n=k\neq 0$
+		\end{cases*}
+\end{equation}
+\begin{equation}
+	\int_{-\pi}^\pi \cos(nx)\sin(kx)dx = 0
+\end{equation}
 
 
+\begin{definition}
+	Un polinomio trigonometrico di ordine n è una combinazione lineare di  armoniche $n$-esime con $n=0,1,2,\cdots,m$, cioè:
+	\begin{equation}
+		a_0 + \sum_{n=1}^m \left(a_n \cos(nx) + b_n \sin(nx)\right)
+		a_0, a_n, b_n \in \mathbb{R} \text{ e } x\in\mathbb{R}
+	\end{equation}
+\end{definition}
+\emph{Oss:}
+\begin{itemize}
+	\item un polinomio trigonometrico è periodico di periodo $2\pi$
+	\item la somma, differenza, prodotto di due polinomi trigonometrici è ancora un polinomio trigonometrico.
+\end{itemize}
 
+\begin{definition}
+	Una serie trigonometrica è:
+	\begin{equation}
+		\sum_{n=0}^\infty \left(a_n \cos(nx) + b_n \sin(nx)\right)
+	\end{equation}
+	Con $a_0,a_n,b_n\in\mathbb{R}$
+\end{definition}
 
-\cleardoublepage
+Ogni polinomio trigonometrico è $2\pi$-periodico, quindi la somma di una serie trigonometrica è $2\pi$-periodica.\\
+Per questo motivo supporremo sempre che la funzione che vogliamo decomporre sia $2\pi$-periodica.\\
+
+% todo criterio di leibnitz ricordiamo
+
+Derivando termine a termine una serie trigonometrica si può perdere regolarità. Questo differenzia le serie trigonometriche dalle serie di potenze, che sono sempre derivabili ad ogni ordine dentro il raggio di convergenza.
+
+% todo integra la parte in blu appunti prof. probabilmente abbastanza superfluo
+
+\begin{thm}
+	Convergenza totale di una serie trigonometrica\\
+	Data la serie trigonometrica $a_0 + \sum_{n=1}^\infty \left(a_n \cos(nx) + b_n \sin(nx)\right)$
+	\begin{enumerate}
+		\item[$i)$] Se $\sum_{n=1}^\infty \left(|a_n| + |b_n|\right) <+\infty$ allora la serie converge totalmente in $\mathbb{R}$.\\
+				In particolare, la funzione somma è continua in $\mathbb{R}$ e posso integrare termine a termine in ogni sottoinsieme limitato.
+		\item[$ii)$] Se $\sum_{n=1}^\infty n\cdot\left(|a_n| + |b_n|\right) =+\infty$ allora la funzione somma è derivabile in $\mathbb{R}$ e posso derivare termine a termine.
+	\end{enumerate}
+\end{thm}
+\emph{Oss:} ci interesseranno anche le serie di Fourier che non convergono totalmente in $\mathbb{R}$, cioè tali che $\sum_{n=1}^\infty \left(|a_n| + |b_n|\right) =+\infty$
+Infatti se il segnale periodico $f(x)$ che voglio comporre non è continuo su $\mathbb{R}$ allora la convergenza della serie trigonometrica non può essere totale in $\mathbb{R}$.
+
+\subsection{Costruzione della serie di Fourier di una funzione periodica}
+\begin{thm}
+	Calcolo dei coefficienti di Fourier\\
+	Sia $f:\mathbb{R}\to\mathbb{R}, 2\pi$ una funzione periodica e somma di una serie trigonometrica
+	\begin{equation}
+		f(x) = a_0 + \sum_{n=1}^\infty \left(a_n \cos(nx) + b_n \sin(nx)\right)
+	\end{equation}
+	Supponiamo inoltre di poter integrare termine a termine. Allora:
+	\begin{equation}
+		a_0 = \frac{1}{2\pi}\int_{-\pi}^\pi f(x)dx
+	\end{equation}
+	\begin{equation}
+		a_n = \frac{1}{\pi}\int_{-\pi}^\pi f(x)\cos(nx)dx
+	\end{equation}
+	\begin{equation}
+		b_n = \frac{1}{\pi}\int_{-\pi}^\pi f(x)\sin(nx)dx
+	\end{equation}
+\end{thm}
+
+\begin{dimostrazione}
+	\emph{\textbf{da sapere all'esame}}
+	\begin{itemize}
+		\item Integro $f$ in $\left(-\pi,\pi\right)$, uso integrazione temrine a termine e formula di ortogonalità:
+			\begin{equation}
+				\int_{-\pi}^\pi f(x)dx = \int_{-\pi}^\pi \left(a_0 + \sum_{n=1}^\infty \left(a_n \cos(nx) + b_n \sin(nx)\right)\right)dx
+			\end{equation}
+			\begin{equation}
+				= \int_{-\pi}^\pi a_0dx + \sum_{n=1}^\infty a_n \int_{-\pi}^\pi \cos(nx)dx + \sum_{n=1}^\infty b_n \int_{-\pi}^\pi  \sin(nx)dx
+			\end{equation}
+			\begin{equation}
+				a_0 = \int_{-\pi}^\pi 1dx = 2\pi a_0
+			\end{equation}
+		\item Per trovare $a_n$, moltiplico $f$ per $\cos{nx}$, integro in $\left(-\pi,\pi\right)$, uso l'integrabilità termine a termine  ele formule di ortogonalità:
+			\begin{equation}
+				\int_{-\pi}^\pi f(x)\cos(nx)dx = \int_{-\pi}^\pi \left(a_0 + \sum_{k=1}^\infty \left(a_k \cos(kx) + b_k \sin(kx)\right)\right)\cos(nx)dx
+			\end{equation}
+			\begin{equation}
+				= a_0 \int_{-\pi}^\pi \cos(nx)dx + \sum_{k=1}^\infty a_k \int_{-\pi}^\pi \cos(kx)\cos(nx)dx + \sum_{k=1}^\infty b_k \int_{-\pi}^\pi \sin(kx)\cos(nx)dx
+			\end{equation}
+			\begin{equation}
+				= a_0 \int_{-\pi}^\pi \cos^2(nx)dx = a_n\pi
+			\end{equation}
+		\item Per trovare $b_n$, moltiplico per $\sin{(nx)}$
+	\end{itemize}
+\end{dimostrazione}
+
+Piano di lavoro: data $f:\mathbb{R}\to\mathbb{R}$, $2\pi$-periodica integrabile in $\left[-\pi,\pi\right]$:
+\begin{enumerate}
+	\item Calcolo i coefficienti $a_0, a_n, b_n$ con le formule trovate nel teorema precedente
+	\item Con questi coefficienti costruisco la serie trigonometrica
+	\item Studio la convergenza della serie trigonometrica e, in particolare cerco di stabilire se la somma coincide con $f$ in ogni punto
+\end{enumerate}
+
+\begin{definition}
+	Sia $f:\mathbb{R}\to\mathbb{R}$, $2\pi$-periodica, integrabile in $\left[-\pi,\pi\right]$.
+	\begin{itemize}
+		\item Chiamiamo coefficenti di Fourier di $f$ i valori $a_0, a_n, b_n$ definiti nel teorema precedente
+		\item polinomio di Fourier di $f$ di ordine $m$ il polinomio trigonometrico
+			\begin{equation}
+				F_m(x) = a_0 + \sum_{n=1}^m \left(a_n \cos(nx) + b_n \sin(nx)\right)
+			\end{equation}
+		\item Serie di Fourier di $f$ la serie trigonometrica
+			\begin{equation}
+				F(x) = \sum_{n=1}^\infty \left(a_n \cos(nx) + b_n \sin(nx)\right) = \lim_{m\to\infty} F_m(x)
+			\end{equation}
+	\end{itemize}
+\end{definition}
+
+\emph{\textbf{Importantissimo} per gli esercizi:}
+\begin{itemize}
+	\item se $f$ è pari, si sviluppa in soli coseni, cioè $b_n=0$ per ogni $n$.
+	\item se $f$ è dispari, si sviluppa in soli seni, cioè $a_n=0$ per ogni $n$.
+\end{itemize}
 
 \end{document}
