@@ -938,4 +938,129 @@ Piano di lavoro: data $f:\mathbb{R}\to\mathbb{R}$, $2\pi$-periodica integrabile 
 	\item se $f$ è dispari, si sviluppa in soli seni, cioè $a_n=0$ per ogni $n$.
 \end{itemize}
 
+\section*{Lezione del 19/10/2022}
+
+Esempio: dente di sega\\
+$f(x) = x$\\
+per $x \in (-\pi,\pi]$
+Essendo $f$ dispari:
+\begin{itemize}
+	\item si sviluppa in soli seni, cioè $a_0=a_n=0 \quad \forall n$
+	\item $b_n = \frac{1}{\pi} \int_{-\pi}^\pi f(x) \sin(nx)dx = \frac{2}{\pi} \int_{0}^\pi f(x) \sin{nx} = -2\frac{(-1)^n}{n}$
+\end{itemize}
+La serie di Fourier di $f$ è:
+\begin{equation}
+	-2\sum_{n=1}^\infty \frac{(-1)^n}{n} \sin(nx)
+\end{equation}
+
+\SectionBreak
+\vspace*{0.5cm} % fix todo
+Esempio: Tenda\\
+$f:\mathbb{R}\to\mathbb{R}$, $2\pi$-periodica e\\
+$f(x) = (x-\pi)^2$ per $x \in (0,2\pi]$\\
+$f$ pari, quindi:
+\begin{itemize}
+	\item $b_n = 0 \quad \forall n$
+	\item $a_n = \frac{2}{\pi} \int_{0}^\pi f(x) \cos{nx} dx = \frac{2}{\pi} \int_{0}^\pi (x-\pi)^2 \cos{nx} dx$
+\end{itemize}
+Quindi:
+\begin{equation}
+	a_0 = \frac{1}{2\pi} \int_{0}^\pi (x-\pi)^2 dx = \frac{\pi^2}{3} 
+\end{equation}
+
+\begin{equation}
+	a_n = 
+\end{equation}
+
+\subsection{Convergenza della seride di Fourier}
+Data $f:\mathbb{R}\to\mathbb{R}$, $2\pi$-periodica, integrabile in $\left[-\pi,\pi\right]$:
+\begin{definition}
+	Data $f:[-\pi,\pi]\to\mathbb{R}$. Diciamo che $f$ è regolare a tratti in $[-\pi,\pi]$ se esiste un numero finito di punti $x_0, x_1, \cdots, x_n$ in $[-\pi,\pi]$ tali che
+	$f$ e derivabile in $(x_i,x_{i+1})\quad \forall i=0,1,\cdots,n-1$ ed esistono finiti i limiti:
+	\begin{equation}
+		\lim_{x\to x_i^-} f'(x) \quad \forall i=0,1,\cdots,n-1
+	\end{equation}
+	\begin{equation}
+		\lim_{x\to x_i^+} f'(x) \quad \forall i=0,1,\cdots,n-1
+	\end{equation}
+\end{definition}
+
+%todo disegno
+%todo oggetti non verificabili (cuspide e asintoto verticale)
+
+\emph{Oss:} Se $f$ è periodica e regolare a tratti in $[-\pi,\pi]$, allora:
+\begin{itemize}
+	\item $f$ è regolare a tratti in qualunque intervallo limitato.
+	\item Si avrà anche che $f$ è continua in $(x_i,x_{i+1})\quad \forall i=0,1,\cdots,n-1$. ed esistono finiti i limiti:
+	\begin{equation}
+		\lim_{x\to x_i^-} f(x) \quad \forall i=0,1,\cdots,n-1
+	\end{equation}
+	\begin{equation}
+		\lim_{x\to x_i^+} f(x) \quad \forall i=0,1,\cdots,n-1
+	\end{equation}
+	\item $f$ è integrabile su qualunque intervallo limitato.
+	\item \textbf{Facoltativo:} BCFTV, esercizio $II.12$. La sua serie di Fourier è integrabile termine a termine.
+\end{itemize}
+
+\begin{thm} Della convergenza puntuale delle serie di Fourier\\
+	Sia $f:\mathbb{R}\to\mathbb{R}$, $2\pi$-periodica, regolare a tratti in $[-\pi,\pi]$.\\
+	Allora la serie di Fourier di $f$ converge puntualmente $\forall \mathbb{R}$ e inoltre
+	\begin{equation}
+		\lim_{m\to+\infty} F_m(x) = \frac{1}{2} \left[ \lim_{s\to x^+} f(s) + \lim_{s\to x^-} f(s) \right] 
+	\end{equation}
+
+Parafrasando: la serie di F converge puntualmente alla media tra $f(x^+)$ e $f(x^-)$.\\
+In particolare:
+\begin{equation}
+	f \textnormal{continua in } x \Longrightarrow \lim_{m\to+\infty} F_m(x) = f(x)
+\end{equation}
+\end{thm}
+
+\begin{thm} Convergenza totale della serie di Fourier\\
+	Sia $f:\mathbb{R}\to\mathbb{R}$, $2\pi$-periodica, regolare a tratti in $[-\pi,\pi]$.\\
+	Se inoltre $f$ è continua in tutto $\mathbb{R}$, allora la serie di Fourier di $f$ converge totalmente a $f$ in tutto $\mathbb{R}$.
+\end{thm}
+
+% verifica gli esempi di prima (tenda e dente di sega) ¿todo?
+
+
+\section{Lezione del 21/10/2022}
+Ripasso\\
+tde 16/02/2021
+
+% funzione a tratti
+\begin{equation}
+	f(x) = \begin{cases}
+		\pi-x & x \in (0,\pi] \\
+		0 & x = 0
+	\end{cases}
+\end{equation}
+f regolare a tratti, quindi al serie di Fourier converge $\forall x$\\
+Funzione somma $S(x) = \lim_{x\to+\infty} F_m(x)$\\
+Se $f$ è continua in $x$, allora $S(x) = f(x)$\\
+Nei punti dove $f$ è discontinua, cioè $x=2k\pi$,\\
+\begin{equation}
+	S(x)= \frac{1}{2} \left( \lim_{s\to x^+} f(s) + \lim_{s\to x^-} f(s) \right) = 0 = f(x)
+\end{equation}
+Conclusione: $S(x) = f(x)$ $\forall x$\\
+Riguardo la convergenza totale:\\
+% todo aggiungi roba qua
+
+In ogni intervallo dove $S$ è discontinua, la convergenza non può essere totale\\
+
+\SectionBreak
+
+\begin{thm} Convergenza in media quadratica\\
+	Sia $f:\mathbb{R}\to\mathbb{R}$, $2\pi$-periodica, regolare a tratti in $[-\pi,\pi]$.\\
+	Allora:
+	\begin{equation}
+		\lim_{m\to+\infty} \int_{-\pi}^\pi \left(F_m(x)-f(x)\right)^2 dx = 0 
+	\end{equation}
+\end{thm}
+Spiegazione: si può dimostrare che la convergenza media quadratica implica:
+\begin{equation}
+	\lim_{m\to+\infty} \int_{-\pi}^\pi F_m(x)^2 dx = \int_{-\pi}^\pi f(x)^2 dx
+\end{equation}
+L'area sottesa al grafico di $F_m^2$ converge all'area sottesa al grafico di $f^2$ (per $m\to+\infty$)
+
 \end{document}
