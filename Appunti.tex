@@ -20,15 +20,15 @@ footskip=1cm]{geometry}
 
 
 \newcommand{\SectionBreak}{%
-    %\vskip 0.5ex
+	%\vskip 0.5ex
 
-    \nointerlineskip
-    \moveright 0.125\textwidth \vbox{\hrule width0.75\textwidth}
-    \nointerlineskip
-    %\vskip 0.5ex
-    \makeatletter
-        %\@afterindenfalse%
-    \makeatother
+	\nointerlineskip
+	\moveright 0.125\textwidth \vbox{\hrule width0.75\textwidth}
+	\nointerlineskip
+	%\vskip 0.5ex
+	\makeatletter
+		%\@afterindenfalse%
+	\makeatother
 
 }
 
@@ -60,7 +60,7 @@ footskip=1cm]{geometry}
 	\bigskip
 	\bigskip
 
-
+	\vspace{2cm}
 	\begin{tikzpicture}
 	\begin{axis}[axis line style={draw=none}, colormap/bluered]
 	\pgfplotsset{ticks=none}
@@ -68,6 +68,7 @@ footskip=1cm]{geometry}
 	 \addplot3[surf, samples=50, opacity=0.5, shader=interp] {x^2-y^2};
 	\end{axis}
 	\end{tikzpicture}
+	\vspace{6cm}
 }
 
 
@@ -211,7 +212,7 @@ allora $\mathcal{L}(c_1y_1+c_2y_2)=c_1b_1+c_2b_2$ cioè $y'_{(t)}=a(t)(c_1y_1+c_
 cioè $(c_1y_1+c_2y_2)'=a(t)(c_1y_1+c_2y_2)+c_1b_1+c_2b_2$\\
 \textbf{Oss:} \begin{itemize}
 	\item Prendo due soluzioni distinde della EDO 
-    \item  $y'=a(t)y + b(t)$\\
+	\item  $y'=a(t)y + b(t)$\\
 \end{itemize}
 \SectionBreak
 \subsection{Esistenza e unicità globale di Cauchy}
@@ -311,18 +312,18 @@ Il modello prende anche in considerazione la competizione per le risorse al cres
 	\begin{axis}[ymin = 0, ymax = 1.5, axis lines = left, height = 4.5cm, width = 8cm, legend pos = south east]
 
 \addplot [
-    domain=0:6, 
-    samples=100, 
-    color=red,
+	domain=0:6, 
+	samples=100, 
+	color=red,
 ]
 {1/(1-(1/3)*e^(-x))};
 \addlegendentry{$y(0)=1.5$}
 \addplot [
-    domain=0:6, 
-    samples=100, 
-    color=blue,
-    ]
-    {1/(1+e^(-x))};
+	domain=0:6, 
+	samples=100, 
+	color=blue,
+	]
+	{1/(1+e^(-x))};
 \addlegendentry{$y(0)=0.5$}
 \addplot [
 	domain=0:6, 
@@ -339,12 +340,12 @@ Il modello prende anche in considerazione la competizione per le risorse al cres
 Trovo l'integrale generale risolvendo come Bernoulli
 \begin{enumerate}
 
-    \item Soluzioni costanti\hspace{1cm}  $y(t)=0,\hspace{0.5cm}   y(t)=\frac{k}{h}$
-    \item Divido per $y^2: \hspace{0.5cm}   \frac{y'(t)}{y^2(t)} = \frac{k}{y(t)}-h$ 
-    \item Pongo $z'(t)=\frac{1}{y(t)}=-\frac{k}{y(t)}+h=-kz(t)+h$ ricavo che $z'(t) + kz(t)=h$
-    \item $z(t)= e^{-\int k}[\int e^{\int k}h dx+c]$\\\\$=e^{-kt}[h\int e^{kx} dx+c]$\\\\$=e^{-kt}[\frac{h}{k}e^{kt}+c]$\\\\$=\frac{\frac{h}{k}e^{kt}+c}{e^{kt}}$
-    \item $y(t)=\frac{1}{z(t)}=\frac{e^{kt}}{\frac{h}{k}e^{kt}+c}=\frac{ke^{kt}}{he^{kt}+kc}$\\ possiamo scrivere $kc=c'$ in quanto costante arbitraria
-    
+	\item Soluzioni costanti\hspace{1cm}  $y(t)=0,\hspace{0.5cm}   y(t)=\frac{k}{h}$
+	\item Divido per $y^2: \hspace{0.5cm}   \frac{y'(t)}{y^2(t)} = \frac{k}{y(t)}-h$ 
+	\item Pongo $z'(t)=\frac{1}{y(t)}=-\frac{k}{y(t)}+h=-kz(t)+h$ ricavo che $z'(t) + kz(t)=h$
+	\item $z(t)= e^{-\int k}[\int e^{\int k}h dx+c]$\\\\$=e^{-kt}[h\int e^{kx} dx+c]$\\\\$=e^{-kt}[\frac{h}{k}e^{kt}+c]$\\\\$=\frac{\frac{h}{k}e^{kt}+c}{e^{kt}}$
+	\item $y(t)=\frac{1}{z(t)}=\frac{e^{kt}}{\frac{h}{k}e^{kt}+c}=\frac{ke^{kt}}{he^{kt}+kc}$\\ possiamo scrivere $kc=c'$ in quanto costante arbitraria
+	
 \end{enumerate}
 
 \newpage
@@ -1755,6 +1756,294 @@ Posso quindi associare una forma quadratica e calcolarne il segno.
 %ripasso gal forme quadratiche todo
 
 % esempio
+
+\subsubsection{Formula di Taylor al 2° ordine}
+% richiamo analisi 1 todo
+\begin{thm} \textbf{Formula di Taylor al 2° ordine}\\ % è un teorema? todo importante
+	$A \subseteq \mathbb{R}^n$ aperto, $f \in C^2(A)$  allora per ogni $x_0 \in A$:
+	\begin{equation}
+		f(\underline{x}_0 + \underline{h}) = f(\underline{x}_0) + \left\langle \nabla f (\underline{x}_0), \underline{h}\right\rangle  + \frac{1}{2} \left\langle \underline{h}, H_f (\underline{x}_0) \underline{h}\right\rangle + o(\left\lVert \underline{h} \right\rVert^2)
+	\end{equation}
+\end{thm}
+% osservazioni in blu todo
+Ponendo $\underline{x}_0 + h = \underline{x}$:
+\begin{equation}
+	f(\underline{x}) = f(\underline{x}_0) + \left\langle \nabla f (\underline{x}_0), \underline{x} - \underline{x}_0\right\rangle  + \frac{1}{2} \left\langle \underline{x} - \underline{x}_0, H_f (\underline{x}_0) (\underline{x} - \underline{x}_0)\right\rangle + o(\left\lVert \underline{x} - \underline{x}_0 \right\rVert^2)
+\end{equation}
+
+% todo richiami di ottimizzazione analisi 1
+
+\subsection{Introduzione all'ottimizzazione 3D}
+\begin{definition}
+	Sia $A \subseteq \mathbb{R}^2$ sottoinsieme qualunque, $f: A \to \mathbb{R}$.\\
+	Un punto $(x_0,y_0) \in A$ si dice:
+	\begin{itemize}
+		\item punto di massimo globale (o assoluto) per $f$ in $A$ se $f(x_0,y_0) \geq f(x,y)$ per ogni $(x,y) \in A$. Il valore di $f(x_0,y_0)$ è detto (valore di) massimo globale o assoluto.
+		\item Punto di massimo locale (o relativo) per $f$ in $A$ se $f(x_0,y_0) \geq f(x,y)$ per ogni $(x,y) \in B_\delta (x_0,y_0) \cap A$. Il valore di $f(x_0,y_0)$ è detto (valore di) massimo locale o relativo.
+		\end{itemize}
+	Analogamente minimo invertendo le disuguaglianze.
+\end{definition}
+\emph{Oss:}\begin{itemize}
+	\item I punti di massimo appartengono all'insieme $A$ e possono essere interni o di frontiera.
+	\item Il valore di max assoluto è unico, ma potrebbe essere assunto in più punti.
+\end{itemize}
+
+\begin{definition}
+	Se $(x_0,y_0)$ è un punto di max o di min per $f$ in $A$ allora è detto punto di estremo per $f$ in $A$.
+\end{definition}
+
+\begin{thm} \textbf{di Weierstrass}
+	$A \subseteq \mathbb{R}^2$ chiuso e limitato, $f: A \to \mathbb{R}$ continua.\\
+	Allora $f$ assume i valori di massimo e minimo assoluto, cioè esistono:
+	\begin{itemize}
+		\item $(x_m, y_m) \in A$ punto di minimo assoluto.
+		\item $(x_M, y_M) \in A$ punto di massimo assoluto.
+	\end{itemize}
+	Cioè:
+	\begin{equation}
+		f(x_m, y_m) \leq f(x,y) \leq f(x_M, y_M) \quad \forall (x,y) \in A
+	\end{equation}
+\end{thm}
+
+
+% anticipazione esempio todo
+\subsection{Ottimizzazione libera}
+Cioè su un insieme aperto si applica Fermat, ma non Weierstrass.
+\begin{thm}
+	Sia $A \subseteq \mathbb{R}^2$ aperto, $f: A \to \mathbb{R}$.\\
+	Se $(x_0,y_0)$ è un punto di estremo per $f$ e se $f$ e se $f$ è derivabile in $(x_0,y_0)$ allora:
+	\begin{equation}
+		\nabla f(x_0,y_0) = \underline{0}
+	\end{equation}
+\end{thm}
+\begin{definition}
+	Sia $A \subseteq \mathbb{R}^2$ aperto, $f: A \to \mathbb{R}$ derivabile in $(x_0,y_0) \in A$.\\
+	Se $\nabla f(x_0,y_0) = \underline{0}$ allora $(x_0,y_0)$ è detto punto critico o punto stazionario per $f$.
+\end{definition}
+Quindi secondo il teorema di Fermat se un punto è estremale allora è anche critico.
+
+\begin{definition}
+	Un punto critico di $f$ che non è estremale per $f$ è detto punto di sella.
+\end{definition}
+In pratica i punti estremali di una funzione $f$ in un insieme $A$ aperta:
+\begin{enumerate}
+	\item se $f$ è derivabile in tutto $A$: determino i punti critici di $f$ in $A$ e poi stabilisco quali sono di massimo, minimo, sella.
+	\item Se $f$ ha punti di non derivabilità li includo tra i candidati.
+\end{enumerate}
+\emph{Oss:} Se $f$ è anche differenziabile in $(x_0, y_0)$ punto critico allora:
+\begin{enumerate}
+	\item il piano tangente al grafico di $f$ in $(x_0, y_0, f(x_0, y_0))$ è orizzontale:
+			\begin{equation}
+				z = f(x_0, y_0)
+			\end{equation}
+	\item $\forall \underline{v} \in \mathbb{R}^2$, $\left\lVert \underline{v} \right\rVert = 1$, si ha:
+			\begin{equation}
+				\frac{\partial f}{\partial \underline{v}}(x_0, y_0) = 0
+			\end{equation}
+\end{enumerate}
+%esempio
+\subsection{Classificazione dei punti critici}
+\begin{thm} \textbf{Criterio della matrice Hessiana}\\
+	$A \subseteq \mathbb{R}^2$ aperto, $f \in C^2(A)$.\\
+	$\underline{x}_0 = (x_0, y_0) \in A$ punto critico di $f$ allora.\\
+	Denotiamo $q$ la fomra quadratica indotta da $H_f(\underline{x}_0)$, cioè:
+	\begin{equation}
+		q(h_1,h_2) = (h_1, h_2) \cdot H_f(\underline{x}_0) \cdot \begin{pmatrix} h_1 \\ h_2 \end{pmatrix}
+	\end{equation}
+	Allora:
+	\begin{enumerate}
+		\item[$i)$] Se $q$ è definita positiva allora $\underline{x}_0$ è punto di minimo.
+		\item[$ii)$] Se $q$ è definita negativa allora $\underline{x}_0$ è punto di massimo.
+		\item[$iii)$] Se $q$ è indefinita allora $\underline{x}_0$ è punto di sella.  
+	\end{enumerate}
+\end{thm}
+\emph{Oss:} Se $q$ è indefinita il criterio della matrice Hessiana non da informazioni.
+\begin{dimostrazione}
+	Essendo $\nabla f(\underline{x}_0) = \underline{0}$, la formula di Taylor al secondo ordine diventa
+	\begin{equation}
+		f(\underline{x}_0 + \underline{h}) = f(\underline{x}_0) + \frac{1}{2} q(\underline{h}) + o(\left\lVert \underline{h} \right\rVert^2)
+	\end{equation}
+	\begin{enumerate}
+		\item[$i)$] Se $q$ è definita positiva, cioè $q(\underline{h})>0 \quad \forall \underline{h}$\\
+				
+	\end{enumerate}
+	% todo importante dimostrazione
+	\begin{center}
+		Da finire
+	\end{center}
+
+\end{dimostrazione}
+\subsubsection{Come applicare il criterio della matrice Hessiana}
+\begin{enumerate}
+	\item[$i)$] $\det H_f(\underline{x}_0) > 0$ e $\frac{\partial^2 f}{\partial x^2}(x_0, y_0) > 0$ allora minimo.
+	\item[$ii)$] $\det H_f(\underline{x}_0) > 0$ e $\frac{\partial^2 f}{\partial x^2}(x_0, y_0) < 0$ allora massimo.
+	\item[$iii)$] $\det H_f(\underline{x}_0) < 0$ allora punto di sella.
+	\item[$iv)$] $\det H_f(\underline{x}_0) = 0$ allora il criterio non si applica.
+\end{enumerate}
+
+\section*{Lezione 23-11-22}
+Cosa fare quando $\det H_f(\underline{x}_0) = 0$ con $\nabla f(\underline{x}_0) = \underline{0}$ e $\underline{x}_0 \in A$ aperto?\\
+Ciop il criterio dell'Hessiana non da informaizoni.\\
+
+INDAGINE DIRETTA (O STUDIO LOCALE)\\
+% esempio todo punti di estremo di f(x,y) = x^4 - 6x^2y^2 + y^4
+Altra tecnica: studio del segno di $f$ attorno al punto candidato.\\
+
+CONVESSITÀ E CONCAVITÀ\\
+\begin{definition}
+	$f: \mathbb{R}^2 \to \mathbb{R}$, $f \in C^2(A)$ è convessa in $\mathbb{R}^2$ se $\forall (x,y) \in \mathbb{R}^2$ $H_f(x,y)$ è definita positiva o semidefinita positiva.\\
+\end{definition}
+\emph{Oss:} Simile alla dimenzione 1.\\
+
+Ottimizazione per funzioni convesse\\ %todo importante definizione o teorema?
+Sia $f$ $C^2(A)$ convessa.
+Se $\underline{x}_0 \in \mathbb{R}^2$ è un punto critico di $f$ allora $\underline{x}_0$ è punto di minimo assoluto.
+
+\begin{definition}
+	$f \in C^2(A)$ è concava se $\forall (x,y) \in \mathbb{R}^2$ si ha $H_f(x,y)$ è definita negativa o semidefinita negativa.\\
+	In questo caso $\underline{x}_0$ è punto di massimo assoluto.
+\end{definition}
+
+\section{Ottimizzazione vincolata}
+Se cerco i punti estremanti di $f$ in un insieme non aperto non è sufficiente applicare il teorema di Fermat nella parte interna dell'insieme perché potrebbero esserci estremanti anche sul bordo.\\
+STRATEGIA:
+\begin{enumerate}
+	\item[0] se $A$ è chiuso e limitato e $f$ è continua, allora uso Weierstrass
+	\item[1] applico Fermat nell'insieme aperto $A \setminus$ bordo di $A$.
+	\item[2] cerco eventuali punti estremanti di $f$ sul bordo di $A$.
+\end{enumerate}
+% buona notizia todo
+
+\subsection{Vincoli di uguaglianza}
+in questa sezione vogliamo determianre i massimi e imini di $f(x,y)$ quando $(x,y)$ verifica una condizione aggiuntiva della forma
+\begin{equation}
+	F(x,y) = 0
+\end{equation}
+% esempio da video todo
+
+\begin{definition}
+	Siano $A \subset \mathbb{R}^2$ aperto, $f,F \in C^2(A)$.\\
+	Poniamo
+	\begin{equation}
+		z = {(x,y) \in A: F(x,y) = 0}
+	\end{equation}
+	Un punto $(x_0,y_0) \in z$ si dice:
+	\begin{itemize}
+		\item Punto di massimo relativo (o locale) per $f$ vincolato a $z$ se esiste $\delta > 0$ tale che
+				\begin{equation}
+					f(x_0,y_0) \geq f(x,y) \quad \forall (x,y) \in  B_{\delta}((x_0,y_0)) \cap z
+				\end{equation}
+		\item Punto di massimo assoluto per $f$ vincolato a $z$ se
+				\begin{equation}
+					f(x_0,y_0) \geq f(x,y) \quad \forall (x,y) \in z
+				\end{equation}
+		\item analogamente min
+		\item punto di estremo vincolato un max vincolato o un min vincolato.
+	\end{itemize}
+\end{definition}
+
+\section*{Lezione 25-11-2022}
+Il metodo di sostituzione non è applicabile il vincolo non è esplicitabile.
+Es: $xy = \ln y + \sqrt{x}$\\
+Inoltre, ci sono casi in cui è possibile sostituire, ma bisogna prestare attenzione.\\
+
+% integra todo importante
+
+METODO DEI MOLTIPLICATORI DI LAGRANGE\\
+Introduzione informale: Così come il teorema di Fermat fornice i candidati punti di estrempo libero, il metodo dei moltiplicatori di Lagrange fornisce i candidati punti di estremo vincolato.\\
+Tra i candidati di estremo vincolato seleziono max e min assoluti vincolati confrontoando i valori di $f$.\\
+
+\begin{thm} \textbf{Metodo dei moltiplicatori di Langrange}\\
+	$A \subset \mathbb{R}^2$ aperto, $f,F \in C^1(A)$.\\
+	Sia $\underline{x}_0$ un punto di estremo vincolato per $f$ sul vincolo:
+	\begin{equation}
+		z = {(x,y) \in A: F(x,y) = 0}
+	\end{equation}
+	Supponiamo inoltre che $\nabla F(\underline{x}_0) \neq 0$.\\
+	Allora esiste un $\lambda_0 \in \mathbb{R}$, detto moltiplicatore di Lagrange, tale che 
+	\begin{equation}
+		\nabla f(\underline{x}_0) = \lambda_0 \nabla F(\underline{x}_0)
+	\end{equation}
+\end{thm}
+\emph{Oss:} Scriviamo le condizioni:
+\begin{equation}
+	\nabla f(\underline{x}_0) = \lambda_0 \nabla F(\underline{x}_0) \quad \text{e} \quad (x_0,y_0) \in z
+\end{equation}
+In modo più esplicito:
+\begin{equation}
+	\begin{cases}
+		\frac{\partial f}{\partial x} (x_0,y_0) = \lambda_0 \frac{\partial F}{\partial x} (x_0,y_0)\\
+		\frac{\partial f}{\partial y} (x_0,y_0) = \lambda_0 \frac{\partial F}{\partial y} (x_0,y_0)\\
+		F(x_0,y_0) = 0
+	\end{cases}
+\end{equation}
+Sistema non lineare di tre equazioni nelle tre incognite $(x_0,y_0,\lambda_0)$.\\
+
+In pratica: i punti candidati sono le soluzioni di:
+\begin{equation}
+	\begin{cases}
+		\nabla F(\underline{x}_0) = \underline{0}\\
+		F(\underline{x}_0) = 0
+	\end{cases}
+	\quad \text{e} \quad
+	\begin{cases}
+		\nabla f(\underline{x}_0) = \lambda_0 \nabla F(\underline{x}_0)\\
+		F(\underline{x}_0) = 0
+	\end{cases}
+\end{equation}
+\emph{Oss:} il valore $\lambda_0 = 0$ è ammissibile.\\
+% esempio todo
+
+% integrazione? todo
+
+% todo importante tabella
+TABELLA DA INSERIRE\\
+
+%integra todo importante
+\begin{definition}
+	Si definisce Lagrangiana la funzione
+	\begin{equation}
+		\mathcal{L} (x,y,\lambda) = f(x,y) - \lambda F(x,y)
+	\end{equation}
+	Con $(x,y)\in A$ e $\lambda \in \mathbb{R}$.
+\end{definition}
+\emph{Oss:}\\
+			$\frac{\partial \mathcal{L} }{\partial x} (x,y,\lambda) = \frac{\partial f}{\partial x} (x,y) - \lambda \frac{\partial F}{\partial x} (x,y)$\\
+			$\frac{\partial \mathcal{L} }{\partial y} (x,y,\lambda) = \frac{\partial f}{\partial y} (x,y) - \lambda \frac{\partial F}{\partial y} (x,y)$\\
+			$\frac{\partial \mathcal{L} }{\partial \lambda} (x,y,\lambda) = -F(x,y)$\\
+Quindi il sistema dei moltiplicatori di Lagrange si può scrivere come:
+\begin{equation}
+	\nabla \mathcal{L} (x,y,\lambda_0) = \underline{0}
+\end{equation}
+
+\chapter{Calcolo integrale per funzioni di più variabili}
+%integrali doppi
+%integrali tripli
+Esempi introduttivi:
+\begin{itemize}
+	\item Data una lamina piana $D \subseteq \mathbb{R}^2$ avente densità di massa $\rho(x,y) \geq 0 \Longrightarrow \iint_D \rho(x,y) \, dxdy$ è la massa della lamina.\\
+			Momento d'inerzia rispetto all'asse $z$:
+			\begin{equation}
+				\iint_D \rho(x,y) (x^2 + y^2) \, dxdy
+			\end{equation}
+	\item Date 2 variabile aleatorie continue $X,Y$, la densità congiunta $f_{X,Y}(x,y)$ è tale che probabilità evento $A$:
+		\begin{equation}
+			A = P[(X,Y) \in A] = \iint_A f_{X,Y}(x,y) \, dxdy
+		\end{equation}
+\end{itemize}
+
+\section{Integrali doppi}
+\subsection{Regioni semplici}
+\begin{definition}
+	$D \subseteq \mathbb{R}^2$ è detta regione $y$-semplice se:
+	\begin{equation}
+		D = {(x,y) \in \mathbb{R}^2: x \in [a,b], g_1(x) \leq y \leq g_2(x)}
+	\end{equation}
+	Con $a,b \in \mathbb{R}$ e $g_1,g_2 \in C^1([a,b])$. % verifica importante todo
+\end{definition}
+
+
+
 
 
 \chapter{Esercizi}
