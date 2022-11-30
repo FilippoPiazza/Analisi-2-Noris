@@ -18,6 +18,7 @@ left=2cm,
 right=2cm,
 footskip=1cm]{geometry}
 
+\newcommand{\iseq}{\stackrel{?}{=}}
 
 \newcommand{\SectionBreak}{%
 	%\vskip 0.5ex
@@ -308,6 +309,7 @@ Il modello prende anche in considerazione la competizione per le risorse al cres
 \bigskip
 \emph{Simulazione numerica per $k=h=1$}
 
+\begin{center}
 \begin{tikzpicture}
 	\begin{axis}[ymin = 0, ymax = 1.5, axis lines = left, height = 4.5cm, width = 8cm, legend pos = south east]
 
@@ -333,7 +335,8 @@ Il modello prende anche in considerazione la competizione per le risorse al cres
 	{1};
 
 	\end{axis}
-\end{tikzpicture}
+\end{tikzpicture}	
+\end{center}
 
 \newpage % verifica
 \textbf{Integrale generale dell'Equazione Logistica}\\
@@ -801,16 +804,35 @@ Segnale sonoro periodico:
 \end{equation}
 
 % grafico della funzione
+\begin{center}
 \begin{tikzpicture}
 \begin{axis}
-\addplot[domain=-10:10,samples=1000,smooth] {3*cos(x)-sin(2*x)-cos(10*x)};
+\addplot[domain=-10:10,samples=1000,smooth] {3*cos(deg(x)) - 2*sin(deg(2*x))-cos(deg(10*x))};
 \end{axis}
 \end{tikzpicture}
+\end{center}
 
 Per trasmettere il segnale basta comunicare i coefficienti:\\
-%tabella dei coefficienti
+%tabella dei coefficienti di sin e cos
+\begin{center}
+	\begin{tabular}{ c c c c c c c c}
+	   & $n=0$ & $n=1$ & $n=2$ & $n=3$ & $\cdots$ & $n=10$ & $\cdots$	\\ 
+	 coeff. di $\cos(nx$) & 0 & 3 & 0 & 0 & $\cdots$ & -1 & $\cdots$	\\  
+	 coeff. di $\sin(nx$) & 0 & 0 & $-1$ & 0 & $\cdots$ & 0 & $\cdots$
+	\end{tabular}
+\end{center}
 
-\emph{integra}
+\emph{manca grafico}
+
+Decomposizione di taylor non adatta perché:
+\begin{enumerate}
+	\item decomporre segnali non regolari
+	\item individuare le frequenze alte
+\end{enumerate}
+La teoria di Taylor permette di decomporre un segnale periodico (non necessariamente regolare) nella combinazione lineare di infinite funzioni trigonometriche:
+\begin{equation}
+	f(x) \stackrel{?}{=} a_0 + \sum_{n=1}^\infty \left(a_n \cos(nx) + b_n \sin(nx)\right)
+\end{equation}
 \section*{Lezione del 14/10/2022}
 
 \emph{Funzioni periodiche, polinomi e serie trigonometriche}\\
